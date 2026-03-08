@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cavalier Baseball Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Variables ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0b1428;
+      --navy2:  #112040;
+      --gold:   #c9972c;
+      --gold2:  #e8b84b;
+      --red:    #b8292f;
+      --white:  #f5f0e8;
+      --gray:   #8a92a0;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-ui:      'Barlow Condensed', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── Utility ── */
+    .gold  { color: var(--gold2); }
+    .red   { color: var(--red); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: linear-gradient(to bottom, rgba(11,20,40,0.98) 0%, rgba(11,20,40,0) 100%);
+      transition: background 0.3s;
+    }
+    nav.scrolled { background: rgba(11,20,40,0.97); border-bottom: 1px solid rgba(201,151,44,0.2); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+    }
+    .nav-logo .diamond {
+      width: 42px; height: 42px; background: var(--gold);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.3rem; color: var(--navy); line-height: 1;
+    }
+    .nav-logo span {
+      font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.05em;
+      color: var(--white);
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
+      text-decoration: none; position: relative; padding-bottom: 4px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 100%;
+      height: 2px; background: var(--gold); transition: right 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--gold2); }
+    .nav-links a:hover::after { right: 0; }
+    .nav-links .cta-link a {
+      background: var(--gold); color: var(--navy); padding: 0.4rem 1rem;
+      border-radius: 2px;
+    }
+    .nav-links .cta-link a::after { display: none; }
+    .nav-links .cta-link a:hover { background: var(--gold2); color: var(--navy); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 28px; height: 2px; background: var(--white); transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 50%, rgba(201,151,44,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(184,41,47,0.06) 0%, transparent 50%),
+        var(--navy);
+    }
+
+    /* SVG baseball field lines */
+    .hero-field {
+      position: absolute; inset: 0;
+      opacity: 0.06;
+    }
+
+    /* Animated stitches */
+    .stitches {
+      position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+      width: 360px; height: 360px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(-50%) rotate(0deg); }
+      50%      { transform: translateY(calc(-50% - 18px)) rotate(6deg); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 10rem 0 6rem;
+      max-width: 680px;
+    }
+    .container .hero-content { padding-left: 0; }
+
+    .hero-eyebrow {
+      font-family: var(--font-ui); font-weight: 600; font-size: 0.85rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 40px; height: 2px; background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+    .hero-title .line2 { color: var(--gold2); }
+
+    .hero-sub {
+      font-family: var(--font-ui); font-weight: 400;
+      font-size: 1.15rem; letter-spacing: 0.04em;
+      color: var(--gray); margin: 1.5rem 0 2.5rem;
+      max-width: 480px; line-height: 1.6;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .btn {
+      font-family: var(--font-ui); font-weight: 700; font-size: 0.95rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.85rem 2.2rem; text-decoration: none;
+      border-radius: 2px; transition: all 0.25s ease; cursor: pointer;
+      display: inline-block; border: 2px solid transparent;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+      border-color: var(--gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold2); border-color: var(--gold2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,151,44,0.35);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border-color: rgba(245,240,232,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--white); background: rgba(245,240,232,0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      position: absolute; bottom: 4rem; left: 0; right: 0;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+    .hero-stats .container { display: flex; gap: 3rem; align-items: center; }
+    .stat-item { text-align: left; }
+    .stat-num {
+      font-family: var(--font-display); font-size: 3rem; color: var(--gold2);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gray); margin-top: 0.2rem;
+    }
+    .stat-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.1); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 0; }
+
+    .section-label {
+      font-family: var(--font-ui); font-weight: 600; font-size: 0.8rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+    }
+    .section-label::before { content: ''; width: 30px; height: 2px; background: var(--gold); }
+
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1; letter-spacing: 0.02em;
+    }
+
+    /* ── ABOUT / THE WAY ── */
+    .about { background: var(--navy2); position: relative; overflow: hidden; }
+    .about::before {
+      content: 'C'; position: absolute; right: -0.1em; top: -0.2em;
+      font-family: var(--font-display); font-size: 40vw;
+      color: rgba(255,255,255,0.02); line-height: 1; pointer-events: none;
+      user-select: none;
+    }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center;
+    }
+    .about-copy p {
+      font-size: 1.05rem; line-height: 1.8; color: rgba(245,240,232,0.75);
+      margin-top: 1.5rem;
+    }
+    .about-copy .big-quote {
+      font-family: var(--font-display); font-size: 1.8rem; color: var(--gold2);
+      line-height: 1.3; margin-top: 2rem; border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+
+    .pillars { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .pillar {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      padding: 1.5rem; background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,151,44,0.12); border-radius: 4px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pillar:hover {
+      border-color: rgba(201,151,44,0.4); background: rgba(201,151,44,0.05);
+    }
+    .pillar-icon {
+      width: 48px; height: 48px; min-width: 48px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .pillar h3 {
+      font-family: var(--font-ui); font-weight: 700; font-size: 1.1rem;
+      letter-spacing: 0.05em; text-transform: uppercase; color: var(--white);
+    }
+    .pillar p {
+      font-size: 0.9rem; color: var(--gray); margin-top: 0.3rem; line-height: 1.6;
+    }
+
+    /* ── RECRUITING ── */
+    .recruiting { background: var(--navy); }
+    .recruiting-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+
+    .stat-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stat-card {
+      background: var(--navy2); border: 1px solid rgba(201,151,44,0.15);
+      border-radius: 4px; padding: 1.75rem; position: relative; overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+    }
+    .stat-card .big { font-family: var(--font-display); font-size: 3.5rem; color: var(--gold2); }
+    .stat-card .label { font-family: var(--font-ui); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-top: 0.25rem; }
+
+    .recruiting-copy p {
+      font-size: 1.05rem; line-height: 1.8; color: rgba(245,240,232,0.75); margin-top: 1.5rem;
+    }
+    .steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .step { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .step-num {
+      width: 36px; height: 36px; min-width: 36px;
+      border: 2px solid var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1rem; color: var(--gold);
+    }
+    .step p { font-size: 0.95rem; color: rgba(245,240,232,0.8); line-height: 1.5; padding-top: 0.4rem; }
+
+    /* ── TRYOUTS BANNER ── */
+    .tryouts-banner {
+      background: linear-gradient(135deg, var(--red) 0%, #8b1a1e 100%);
+      padding: 5rem 0; position: relative; overflow: hidden;
+    }
+    .tryouts-banner::before {
+      content: 'TRYOUTS';
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+      font-family: var(--font-display); font-size: 22vw; white-space: nowrap;
+      color: rgba(0,0,0,0.12); pointer-events: none; user-select: none;
+    }
+    .tryouts-inner {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .tryouts-text h2 {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.02em; line-height: 1;
+    }
+    .tryouts-text p {
+      font-family: var(--font-ui); font-size: 1.1rem; color: rgba(255,255,255,0.8);
+      margin-top: 0.75rem; letter-spacing: 0.04em;
+    }
+    .tryouts-details {
+      display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;
+    }
+    .detail-box {
+      background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px; padding: 1rem 1.5rem;
+      font-family: var(--font-ui); text-align: center;
+    }
+    .detail-box .d-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .detail-box .d-value { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-top: 0.2rem; }
+
+    /* ── COACHES ── */
+    .coaches { background: var(--navy2); }
+    .coaches-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+    .coach-card {
+      background: var(--navy); border: 1px solid rgba(201,151,44,0.1);
+      border-radius: 4px; overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .coach-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .coach-avatar {
+      height: 220px;
+      background: linear-gradient(135deg, #1a2d50, #0b1428);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .coach-avatar .avatar-bg {
+      width: 100px; height: 100px;
+      background: linear-gradient(135deg, var(--gold), rgba(201,151,44,0.3));
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 2.5rem; color: var(--navy);
+    }
+    .coach-info { padding: 1.5rem; }
+    .coach-name { font-family: var(--font-ui); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .coach-role { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-top: 0.2rem; }
+    .coach-bio { font-size: 0.9rem; color: var(--gray); margin-top: 0.75rem; line-height: 1.6; }
+
+    /* ── ALUMNI ── */
+    .alumni { background: var(--navy); }
+    .alumni-scroll {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem;
+    }
+    .alumni-card {
+      background: var(--navy2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .alumni-card:hover { border-color: var(--gold); }
+    .alumni-name { font-family: var(--font-ui); font-weight: 700; font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .alumni-school { font-size: 0.85rem; color: var(--gold2); margin-top: 0.25rem; }
+    .alumni-pos { font-size: 0.8rem; color: var(--gray); margin-top: 0.15rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--navy2); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 3px; color: var(--white); padding: 0.85rem 1rem;
+      font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color 0.2s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select option { background: var(--navy); }
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+    .contact-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .contact-icon {
+      width: 48px; height: 48px; min-width: 48px;
+      background: rgba(201,151,44,0.1); border: 1px solid rgba(201,151,44,0.3);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+    }
+    .contact-item h4 { font-family: var(--font-ui); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .contact-item p { font-size: 0.95rem; color: rgba(245,240,232,0.8); margin-top: 0.2rem; line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070f1e; border-top: 1px solid rgba(201,151,44,0.15);
+      padding: 3rem 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo { font-family: var(--font-display); font-size: 1.75rem; letter-spacing: 0.05em; }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { font-family: var(--font-ui); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold2); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray); margin-top: 2rem; text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-disclaimer { font-size: 0.75rem; color: rgba(138,146,160,0.6); margin-top: 0.5rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--navy); align-items: center; justify-content: center; gap: 2rem; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.5rem; }
+      .hamburger { display: flex; z-index: 101; }
+      .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      .hamburger.open span:nth-child(2) { opacity: 0; }
+      .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+      .hero-content { padding: 8rem 0 12rem; }
+      .stitches { width: 200px; height: 200px; right: -20px; top: 30%; }
+      .hero-stats .container { gap: 1.5rem; flex-wrap: wrap; }
+
+      .about-grid, .recruiting-inner, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .coaches-grid { grid-template-columns: 1fr 1fr; }
+      .alumni-scroll { grid-template-columns: 1fr 1fr; }
+      .stat-cards { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .tryouts-inner { flex-direction: column; }
+    }
+
+    @media (max-width: 580px) {
+      .coaches-grid { grid-template-columns: 1fr; }
+      .alumni-scroll { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">
+      <div class="diamond">C</div>
+      <span>Cavalier Baseball</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#recruiting">Recruiting</a></li>
+      <li><a href="#coaches">Coaches</a></li>
+      <li><a href="#alumni">Alumni</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="cta-link"><a href="#tryouts">Tryouts</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+
+    <!-- Field lines SVG -->
+    <svg class="hero-field" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <g stroke="white" stroke-width="1" fill="none">
+        <!-- baseline left -->
+        <line x1="600" y1="700" x2="150" y2="250"/>
+        <!-- baseline right -->
+        <line x1="600" y1="700" x2="1050" y2="250"/>
+        <!-- pitchers plate -->
+        <circle cx="600" cy="500" r="8"/>
+        <!-- bases -->
+        <rect x="592" y="292" width="16" height="16" transform="rotate(45 600 300)"/>
+        <rect x="342" y="492" width="16" height="16" transform="rotate(45 350 500)"/>
+        <rect x="842" y="492" width="16" height="16" transform="rotate(45 850 500)"/>
+        <!-- warning track arc -->
+        <path d="M 100 800 Q 600 -100 1100 800" stroke-dasharray="8,12"/>
+      </g>
+    </svg>
+
+    <!-- Baseball SVG -->
+    <svg class="stitches" viewBox="0 0 360 360">
+      <circle cx="180" cy="180" r="170" fill="none" stroke="rgba(201,151,44,0.15)" stroke-width="2"/>
+      <circle cx="180" cy="180" r="155" fill="rgba(201,151,44,0.04)" stroke="rgba(201,151,44,0.3)" stroke-width="1.5"/>
+      <!-- seam left -->
+      <path d="M 95 90 C 120 130, 110 165, 90 200 C 70 235, 75 270, 100 300"
+        fill="none" stroke="rgba(201,151,44,0.6)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- seam right -->
+      <path d="M 265 90 C 240 130, 250 165, 270 200 C 290 235, 285 270, 260 300"
+        fill="none" stroke="rgba(201,151,44,0.6)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- stitches left -->
+      <g stroke="rgba(184,41,47,0.7)" stroke-width="1.5" stroke-linecap="round">
+        <line x1="95" y1="115" x2="108" y2="120"/>
+        <line x1="96" y1="135" x2="109" y2="138"/>
+        <line x1="94" y1="155" x2="107" y2="155"/>
+        <line x1="92" y1="175" x2="105" y2="173"/>
+        <line x1="91" y1="195" x2="104" y2="191"/>
+        <line x1="92" y1="215" x2="105" y2="209"/>
+        <line x1="95" y1="235" x2="107" y2="228"/>
+        <line x1="98" y1="255" x2="109" y2="247"/>
+        <line x1="103" y1="273" x2="113" y2="264"/>
+      </g>
+      <!-- stitches right -->
+      <g stroke="rgba(184,41,47,0.7)" stroke-width="1.5" stroke-linecap="round">
+        <line x1="265" y1="115" x2="252" y2="120"/>
+        <line x1="264" y1="135" x2="251" y2="138"/>
+        <line x1="266" y1="155" x2="253" y2="155"/>
+        <line x1="268" y1="175" x2="255" y2="173"/>
+        <line x1="269" y1="195" x2="256" y2="191"/>
+        <line x1="268" y1="215" x2="255" y2="209"/>
+        <line x1="265" y1="235" x2="253" y2="228"/>
+        <line x1="262" y1="255" x2="251" y2="247"/>
+        <line x1="257" y1="273" x2="247" y2="264"/>
+      </g>
+      <!-- C lettermark -->
+      <text x="180" y="200" text-anchor="middle" font-family="'Bebas Neue', sans-serif"
+        font-size="90" fill="rgba(201,151,44,0.18)" dy="0">C</text>
+    </svg>
+
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Kansas City · Est. 2010</p>
+        <h1 class="hero-title">
+          CAVALIER<br>
+          <span class="line2">BASEBALL</span><br>
+          CLUB
+        </h1>
+        <p class="hero-sub">Developing elite youth athletes with college-level fundamentals. 100% college placement. Zero excuses.</p>
+        <div class="hero-ctas">
+          <a href="#tryouts" class="btn btn-gold">Apply for Tryouts</a>
+          <a href="#about" class="btn btn-outline">Our Philosophy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="container">
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">College Placement</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Years Developing Players</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">D1</div>
+          <div class="stat-label">College Alumni</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">MLB</div>
+          <div class="stat-label">Alumni Drafted</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="section-label">The Cavalier Way</p>
+          <h2 class="section-title">We Don't<br><span class="gold">Cut Corners.</span></h2>
+          <p>Every athlete who wears the Cavalier uniform trains with the same concepts and fundamentals used at the collegiate level. We believe that exposure to elite coaching early gives our players a measurable edge as they progress through high school and beyond.</p>
+          <div class="big-quote">"We prepare players to compete at the next level — every rep, every practice, every game."</div>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-icon">⚾</div>
+            <div>
+              <h3>College-Level Training</h3>
+              <p>We bring collegiate coaching methodology to youth development — building habits that carry players to the next level.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🎓</div>
+            <div>
+              <h3>Academic Excellence</h3>
+              <p>On-field talent opens doors, but academics keep them open. We hold our players to high standards in the classroom.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🏆</div>
+            <div>
+              <h3>Character Development</h3>
+              <p>We coach the whole athlete — discipline, work ethic, leadership, and accountability aren't just baseball skills.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📈</div>
+            <div>
+              <h3>Results Driven</h3>
+              <p>100% college placement isn't luck — it's the product of a proven system that works for every player who commits to the process.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECRUITING -->
+  <section class="recruiting" id="recruiting">
+    <div class="container">
+      <div class="recruiting-inner">
+        <div>
+          <p class="section-label">Recruiting</p>
+          <h2 class="section-title">Pathways to<br><span class="gold">College Ball</span></h2>
+          <div class="stat-cards" style="margin-top:2.5rem;">
+            <div class="stat-card">
+              <div class="big">100%</div>
+              <div class="label">Placement Rate</div>
+            </div>
+            <div class="stat-card">
+              <div class="big">D1</div>
+              <div class="label">Programs Reached</div>
+            </div>
+            <div class="stat-card">
+              <div class="big">D2</div>
+              <div class="label">& D3 Placements</div>
+            </div>
+            <div class="stat-card">
+              <div class="big">JUCO</div>
+              <div class="label">Pathways Available</div>
+            </div>
+          </div>
+        </div>
+        <div class="recruiting-copy">
+          <p>Cavalier Baseball Club takes pride in preparing athletes for the recruitment process — both on and off the field. Our staff has built relationships with college programs across the country, and we leverage those connections for every player in our program.</p>
+          <p style="margin-top:1rem;">We guide families through every step of the process: film, showcases, direct communication with coaches, and academic preparation.</p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <p><strong>Evaluate & Develop</strong> — We assess every player's strengths and build an individualized development plan.</p>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <p><strong>Showcase & Promote</strong> — We get players in front of the right coaches at the right events.</p>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <p><strong>Commit & Succeed</strong> — We celebrate placements and continue supporting athletes into their college careers.</p>
+            </div>
+          </div>
+          <div style="margin-top:2rem;">
+            <a href="#contact" class="btn btn-gold">Start the Process</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRYOUTS BANNER -->
+  <section class="tryouts-banner" id="tryouts">
+    <div class="container">
+      <div class="tryouts-inner">
+        <div class="tryouts-text">
+          <h2>2025–2026<br>TRYOUTS</h2>
+          <p>Spots are still available. Are you ready to become a Cavalier?</p>
+          <div class="tryouts-details">
+            <div class="detail-box">
+              <div class="d-label">Season</div>
+              <div class="d-value">2025–2026</div>
+            </div>
+            <div class="detail-box">
+              <div class="d-label">Main Window</div>
+              <div class="d-value">End of July</div>
+            </div>
+            <div class="detail-box">
+              <div class="d-label">Spots</div>
+              <div class="d-value">Limited</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.6); font-size:1.1rem; padding:1rem 2.5rem;">Register Interest →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="coaches" id="coaches">
+    <div class="container">
+      <p class="section-label">Leadership</p>
+      <h2 class="section-title">Meet the <span class="gold">Coaching Staff</span></h2>
+      <div class="coaches-grid">
+        <div class="coach-card">
+          <div class="coach-avatar">
+            <div class="avatar-bg">HC</div>
+          </div>
+          <div class="coach-info">
+            <div class="coach-name">Head Coach</div>
+            <div class="coach-role">Founder & Director</div>
+            <p class="coach-bio">Founder of HC Baseball LLC and lead architect of the Cavalier Way. Brings collegiate coaching experience and an unmatched passion for player development.</p>
+          </div>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">
+            <div class="avatar-bg">PC</div>
+          </div>
+          <div class="coach-info">
+            <div class="coach-name">Pitching Coach</div>
+            <div class="coach-role">Player Development</div>
+            <p class="coach-bio">Former collegiate pitcher who works with every arm on the roster — from mechanics to mental approach on the mound.</p>
+          </div>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">
+            <div class="avatar-bg">HC</div>
+          </div>
+          <div class="coach-info">
+            <div class="coach-name">Hitting Coach</div>
+            <div class="coach-role">Offensive Coordinator</div>
+            <p class="coach-bio">Develops elite bat-to-ball skills and approach at the plate using data-driven methods and hands-on repetition.</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:2rem; color:var(--gray); font-size:0.9rem; font-style:italic;">* Full coaching bios available upon request. Contact us for more information.</p>
+    </div>
+  </section>
+
+  <!-- ALUMNI -->
+  <section class="alumni" id="alumni">
+    <div class="container">
+      <p class="section-label">Cavaliers in College & MLB</p>
+      <h2 class="section-title">Our <span class="gold">Alumni</span></h2>
+      <p style="margin-top:1rem; color:var(--gray); max-width:600px; line-height:1.7;">A tradition of development and placement. These athletes wore the Cavalier uniform and took it to the next level.</p>
+      <div class="alumni-scroll">
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">Division I University</div>
+          <div class="alumni-pos">Pitcher</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">Division I University</div>
+          <div class="alumni-pos">Outfield</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">Division II University</div>
+          <div class="alumni-pos">Infield</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">JUCO → D1 Transfer</div>
+          <div class="alumni-pos">Catcher</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">MLB Draft Pick</div>
+          <div class="alumni-pos">Pitcher</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">Division I University</div>
+          <div class="alumni-pos">Infield</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">Division II University</div>
+          <div class="alumni-pos">Outfield</div>
+        </div>
+        <div class="alumni-card">
+          <div class="alumni-name">Alumni Player</div>
+          <div class="alumni-school">Division I University</div>
+          <div class="alumni-pos">Pitcher</div>
+        </div>
+      </div>
+      <p style="margin-top:2rem; color:var(--gray); font-size:0.9rem;">* Full alumni roster available — contact us for the complete list of Cavalier placements.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Ready to Be a <span class="gold">Cavalier?</span></h2>
+      <div class="contact-grid">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(913) 555-0000" />
+          </div>
+          <div class="form-group">
+            <label>Reason for Contact</label>
+            <select>
+              <option value="">Select one...</option>
+              <option>Tryout Information</option>
+              <option>Recruiting Inquiry</option>
+              <option>General Question</option>
+              <option>Coaching Staff</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell us about your son — age, position, experience..."></textarea>
+          </div>
+          <button type="button" class="btn btn-gold" style="align-self:flex-start;">Send Message</button>
+        </div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>Kansas City Metro Area<br>Johnson County, KS</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📅</div>
+            <div>
+              <h4>Tryouts</h4>
+              <p>Main tryouts held end of July annually.<br>Openings available year-round — reach out!</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">⚾</div>
+            <div>
+              <h4>Ages</h4>
+              <p>Youth through high school players.<br>All positions welcome.</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🎓</div>
+            <div>
+              <h4>Recruiting</h4>
+              <p>100% college placement rate.<br>D1, D2, D3 & JUCO pathways available.</p>
+            </div>
+          </div>
+          <div style="margin-top:1rem; padding:1.5rem; background:rgba(201,151,44,0.07); border:1px solid rgba(201,151,44,0.25); border-radius:4px;">
+            <p style="font-family:var(--font-ui); font-size:0.85rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase;">Disclaimer</p>
+            <p style="font-size:0.82rem; color:var(--gray); margin-top:0.5rem; line-height:1.6;">Cavalier Baseball Club is a division of HC Baseball LLC and is in no way related to Johnson County Community College.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">CAVALIER <span>BASEBALL</span> CLUB</div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#recruiting">Recruiting</a>
+          <a href="#coaches">Coaches</a>
+          <a href="#alumni">Alumni</a>
+          <a href="#tryouts">Tryouts</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        © 2025 Cavalier Baseball Club · HC Baseball LLC. All Rights Reserved.
+        <div class="footer-disclaimer">Cavalier Baseball Club is a division of HC Baseball LLC and is in no way related to Johnson County Community College. All problems and disagreements will be taken up with HC Baseball LLC.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Scroll-reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.pillar, .stat-card, .coach-card, .alumni-card, .step').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Form submit (placeholder)
+    document.querySelector('.btn-gold[type="button"]').addEventListener('click', function() {
+      this.textContent = '✓ Message Sent!';
+      this.style.background = '#2ecc71';
+      this.style.borderColor = '#2ecc71';
+      setTimeout(() => {
+        this.textContent = 'Send Message';
+        this.style.background = '';
+        this.style.borderColor = '';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
