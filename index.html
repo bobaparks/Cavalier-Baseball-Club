@@ -50,7 +50,14 @@
     nav.scrolled { background: rgba(11,20,40,0.97); border-bottom: 1px solid rgba(201,151,44,0.2); }
 
     .nav-logo {
-      display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+      display: flex; align-items: center; text-decoration: none;
+    }
+    .nav-logo img {
+      height: 52px; width: auto;
+    }
+    /* Fallback text logo if image missing */
+    .nav-logo .logo-fallback {
+      display: none; align-items: center; gap: 0.75rem;
     }
     .nav-logo .diamond {
       width: 42px; height: 42px; background: var(--gold);
@@ -499,8 +506,12 @@
   <!-- NAV -->
   <nav id="navbar">
     <a class="nav-logo" href="#">
-      <div class="diamond">C</div>
-      <span>Cavalier Baseball</span>
+      <img src="cavalier_logo.png" alt="Cavalier Baseball Club"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="logo-fallback">
+        <div class="diamond">C</div>
+        <span>Cavalier Baseball</span>
+      </div>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
