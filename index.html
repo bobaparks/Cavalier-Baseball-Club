@@ -349,10 +349,14 @@
     }
     .coach-card:hover { transform: translateY(-6px); border-color: var(--gold); }
     .coach-avatar {
-      height: 220px;
+      height: 260px;
       background: linear-gradient(135deg, #1a2d50, #0b1428);
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
+    }
+    .coach-avatar img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      filter: grayscale(20%);
     }
     .coach-avatar .avatar-bg {
       width: 100px; height: 100px;
@@ -364,22 +368,54 @@
     .coach-info { padding: 1.5rem; }
     .coach-name { font-family: var(--font-ui); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; }
     .coach-role { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-top: 0.2rem; }
-    .coach-bio { font-size: 0.9rem; color: var(--gray); margin-top: 0.75rem; line-height: 1.6; }
+    .coach-bio { font-size: 0.88rem; color: var(--gray); margin-top: 0.75rem; line-height: 1.6; }
+    .coach-bio ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+    .coach-bio ul li { display: flex; gap: 0.5rem; align-items: flex-start; }
+    .coach-bio ul li::before { content: '▸'; color: var(--gold); font-size: 0.7rem; margin-top: 0.25rem; flex-shrink: 0; }
 
     /* ── ALUMNI ── */
     .alumni { background: var(--navy); }
-    .alumni-scroll {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem;
+    .alumni-tabs { display: flex; gap: 0; margin-top: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .alumni-tab {
+      font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.75rem 1.5rem; cursor: pointer; color: var(--gray);
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      background: none; border-top: none; border-left: none; border-right: none;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .alumni-tab.active { color: var(--gold2); border-bottom-color: var(--gold); }
+    .alumni-tab:hover { color: var(--white); }
+
+    .alumni-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-top: 2rem;
     }
     .alumni-card {
       background: var(--navy2); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px; padding: 1.5rem;
-      transition: border-color 0.3s;
+      border-radius: 4px; padding: 1.25rem;
+      transition: border-color 0.3s, transform 0.3s;
     }
-    .alumni-card:hover { border-color: var(--gold); }
-    .alumni-name { font-family: var(--font-ui); font-weight: 700; font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .alumni-school { font-size: 0.85rem; color: var(--gold2); margin-top: 0.25rem; }
-    .alumni-pos { font-size: 0.8rem; color: var(--gray); margin-top: 0.15rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .alumni-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .alumni-card.mlb { border-color: rgba(184,41,47,0.35); }
+    .alumni-card.mlb:hover { border-color: var(--red); }
+    .alumni-badge {
+      display: inline-block; font-family: var(--font-ui); font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.2rem 0.55rem; border-radius: 2px; margin-bottom: 0.6rem;
+    }
+    .badge-mlb { background: var(--red); color: white; }
+    .badge-d1  { background: rgba(201,151,44,0.2); color: var(--gold2); border: 1px solid rgba(201,151,44,0.4); }
+    .badge-d2  { background: rgba(255,255,255,0.07); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+    .badge-d3  { background: rgba(255,255,255,0.04); color: var(--gray); border: 1px solid rgba(255,255,255,0.1); }
+    .badge-juco { background: rgba(138,146,160,0.15); color: var(--gray); border: 1px solid rgba(138,146,160,0.3); }
+    .alumni-name { font-family: var(--font-ui); font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); }
+    .alumni-class { font-size: 0.78rem; color: var(--gray); margin-top: 0.15rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .alumni-pos { font-size: 0.8rem; color: var(--gold2); margin-top: 0.3rem; font-family: var(--font-ui); letter-spacing: 0.05em; }
+    .alumni-school { font-size: 0.85rem; color: rgba(245,240,232,0.8); margin-top: 0.2rem; line-height: 1.4; }
+
+    .alumni-hidden { display: none; }
+    .load-more-wrap { text-align: center; margin-top: 2.5rem; }
+    .load-more-count { font-family: var(--font-ui); font-size: 0.85rem; color: var(--gray); margin-top: 1rem; letter-spacing: 0.05em; }
 
     /* ── CONTACT ── */
     .contact { background: var(--navy2); }
@@ -446,7 +482,7 @@
 
       .about-grid, .recruiting-inner, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .coaches-grid { grid-template-columns: 1fr 1fr; }
-      .alumni-scroll { grid-template-columns: 1fr 1fr; }
+      .alumni-grid { grid-template-columns: 1fr 1fr; }
       .stat-cards { grid-template-columns: 1fr 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .tryouts-inner { flex-direction: column; }
@@ -454,7 +490,7 @@
 
     @media (max-width: 580px) {
       .coaches-grid { grid-template-columns: 1fr; }
-      .alumni-scroll { grid-template-columns: 1fr; }
+      .alumni-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -600,13 +636,6 @@
             </div>
           </div>
           <div class="pillar">
-            <div class="pillar-icon">🎓</div>
-            <div>
-              <h3>Academic Excellence</h3>
-              <p>On-field talent opens doors, but academics keep them open. We hold our players to high standards in the classroom.</p>
-            </div>
-          </div>
-          <div class="pillar">
             <div class="pillar-icon">🏆</div>
             <div>
               <h3>Character Development</h3>
@@ -711,38 +740,80 @@
       <p class="section-label">Leadership</p>
       <h2 class="section-title">Meet the <span class="gold">Coaching Staff</span></h2>
       <div class="coaches-grid">
+
+        <!-- David Canary -->
         <div class="coach-card">
           <div class="coach-avatar">
-            <div class="avatar-bg">HC</div>
+            <img src="https://le-cdn.website-editor.net/s/1d42b278d07847abb63bd2d8582a3724/dms3rep/multi/opt/canary-1920w.jpg"
+                 alt="David Canary"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-bg" style="display:none;">DC</div>
           </div>
           <div class="coach-info">
-            <div class="coach-name">Head Coach</div>
-            <div class="coach-role">Founder & Director</div>
-            <p class="coach-bio">Founder of HC Baseball LLC and lead architect of the Cavalier Way. Brings collegiate coaching experience and an unmatched passion for player development.</p>
+            <div class="coach-name">David Canary</div>
+            <div class="coach-role">Head Coach & Director</div>
+            <div class="coach-bio">
+              <ul>
+                <li>Former JCCC Assistant Baseball Coach (2008–2022)</li>
+                <li>KC Sluggers 18U Head Coach (2008)</li>
+                <li>Union University Assistant Coach (2005–2007)</li>
+                <li>Played at Union University (2003–2004)</li>
+                <li>Played at Johnson County CC (2001–2002)</li>
+                <li>Played at Cookeville High School, TN (1997–2000)</li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <!-- Jake VanVacter -->
         <div class="coach-card">
           <div class="coach-avatar">
-            <div class="avatar-bg">PC</div>
+            <img src="https://le-cdn.website-editor.net/s/1d42b278d07847abb63bd2d8582a3724/dms3rep/multi/opt/van+the+man-1920w.jpg"
+                 alt="Jake VanVacter"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-bg" style="display:none;">JV</div>
           </div>
           <div class="coach-info">
-            <div class="coach-name">Pitching Coach</div>
-            <div class="coach-role">Player Development</div>
-            <p class="coach-bio">Former collegiate pitcher who works with every arm on the roster — from mechanics to mental approach on the mound.</p>
+            <div class="coach-name">Jake VanVacter</div>
+            <div class="coach-role">Assistant Coach</div>
+            <div class="coach-bio">
+              <ul>
+                <li>Played at Metropolitan CC – Maple Woods</li>
+                <li>Played at Park University</li>
+                <li>Played at Valley City State College</li>
+                <li>Coached at Valley City State College</li>
+                <li>Coached at Bismarck State College</li>
+                <li>Current Assistant Coach at JCCC (2023–Present)</li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <!-- Alex Lahasky -->
         <div class="coach-card">
           <div class="coach-avatar">
-            <div class="avatar-bg">HC</div>
+            <img src="https://le-cdn.website-editor.net/s/1d42b278d07847abb63bd2d8582a3724/dms3rep/multi/opt/fullsizeoutput_f51-1920w.jpeg"
+                 alt="Alex Lahasky"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-bg" style="display:none;">AL</div>
           </div>
           <div class="coach-info">
-            <div class="coach-name">Hitting Coach</div>
-            <div class="coach-role">Offensive Coordinator</div>
-            <p class="coach-bio">Develops elite bat-to-ball skills and approach at the plate using data-driven methods and hands-on repetition.</p>
+            <div class="coach-name">Alex Lahasky</div>
+            <div class="coach-role">Assistant Coach</div>
+            <div class="coach-bio">
+              <ul>
+                <li>Played at Johnson County CC (2010–2011)</li>
+                <li>Played at William Carey University (2012–2013)</li>
+                <li>JCCC Academic All-American (2011)</li>
+                <li>Coached at William Carey University (2013–2014)</li>
+                <li>Coached at Pittsburg State University (2014–2015)</li>
+                <li>Head Coach, Blue Valley West HS (2016–Present)</li>
+              </ul>
+            </div>
           </div>
         </div>
+
       </div>
-      <p style="margin-top:2rem; color:var(--gray); font-size:0.9rem; font-style:italic;">* Full coaching bios available upon request. Contact us for more information.</p>
     </div>
   </section>
 
@@ -751,50 +822,308 @@
     <div class="container">
       <p class="section-label">Cavaliers in College & MLB</p>
       <h2 class="section-title">Our <span class="gold">Alumni</span></h2>
-      <p style="margin-top:1rem; color:var(--gray); max-width:600px; line-height:1.7;">A tradition of development and placement. These athletes wore the Cavalier uniform and took it to the next level.</p>
-      <div class="alumni-scroll">
-        <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">Division I University</div>
-          <div class="alumni-pos">Pitcher</div>
+      <p style="margin-top:1rem; color:var(--gray); max-width:600px; line-height:1.7;">From the KC metro to the pros — 100% of Cavaliers who wanted to play in college did exactly that.</p>
+
+      <div class="alumni-grid" id="alumniGrid">
+
+        <!-- MLB PLAYERS FIRST -->
+        <div class="alumni-card mlb">
+          <div><span class="alumni-badge badge-mlb">⚾ MLB</span></div>
+          <div class="alumni-name">Alex King</div>
+          <div class="alumni-class">Class of 2014</div>
+          <div class="alumni-pos">INF</div>
+          <div class="alumni-school">St. Louis University (D1) → Arizona Diamondbacks</div>
         </div>
-        <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">Division I University</div>
-          <div class="alumni-pos">Outfield</div>
+
+        <div class="alumni-card mlb">
+          <div><span class="alumni-badge badge-mlb">⚾ MLB</span></div>
+          <div class="alumni-name">Jacob Means</div>
+          <div class="alumni-class">Class of 2014</div>
+          <div class="alumni-pos">INF / P</div>
+          <div class="alumni-school">Cowley CC → Indiana State (D1) → Kansas City Royals</div>
         </div>
-        <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">Division II University</div>
-          <div class="alumni-pos">Infield</div>
+
+        <div class="alumni-card mlb">
+          <div><span class="alumni-badge badge-mlb">⚾ MLB</span></div>
+          <div class="alumni-name">Jacob Sylvester</div>
+          <div class="alumni-class">Class of 2014</div>
+          <div class="alumni-pos">RHP</div>
+          <div class="alumni-school">Iowa Western CC → Cal State Northridge (D1) → St. Louis Cardinals</div>
         </div>
-        <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">JUCO → D1 Transfer</div>
-          <div class="alumni-pos">Catcher</div>
+
+        <div class="alumni-card mlb">
+          <div><span class="alumni-badge badge-mlb">⚾ Pro</span></div>
+          <div class="alumni-name">Brock Gilliam</div>
+          <div class="alumni-class">Class of 2016</div>
+          <div class="alumni-pos">P / SS</div>
+          <div class="alumni-school">Washburn University → Kansas City Monarchs (Pro)</div>
         </div>
+
+        <!-- RECENT COLLEGE PLAYERS — first 4 visible -->
         <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">MLB Draft Pick</div>
-          <div class="alumni-pos">Pitcher</div>
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Carter King</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">OF</div>
+          <div class="alumni-school">Emporia State University (D2)</div>
         </div>
+
         <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">Division I University</div>
-          <div class="alumni-pos">Infield</div>
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Dylan Orsund</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Kansas City Kansas CC (JUCO)</div>
         </div>
+
         <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">Division II University</div>
-          <div class="alumni-pos">Outfield</div>
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Logan Waldorf</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">OF</div>
+          <div class="alumni-school">Southwest Tennessee CC (JUCO)</div>
         </div>
+
         <div class="alumni-card">
-          <div class="alumni-name">Alumni Player</div>
-          <div class="alumni-school">Division I University</div>
-          <div class="alumni-pos">Pitcher</div>
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Landon Harris</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Missouri S&T (D2)</div>
         </div>
+
+        <!-- HIDDEN — load more reveals these -->
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Cash Myers</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Fort Scott CC (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Bryce Fullen</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">1B</div>
+          <div class="alumni-school">Mineral Area CC (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Henry Cole</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">INF / P</div>
+          <div class="alumni-school">MSU West Plains (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Jackson Whiddon</div>
+          <div class="alumni-class">Class of 2026</div>
+          <div class="alumni-pos">C</div>
+          <div class="alumni-school">Truman State University (D2)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Brady Cronkhite</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">C</div>
+          <div class="alumni-school">Kansas Wesleyan (D2)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Riley Williams</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">C</div>
+          <div class="alumni-school">Fort Scott CC (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Brock Kempton</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">INF</div>
+          <div class="alumni-school">Park University (D2 / NAIA)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Michael Przybylski</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">INF / OF</div>
+          <div class="alumni-school">Rockhurst University (D2)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Cooper Burton</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">INF</div>
+          <div class="alumni-school">Baker University (NAIA)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Dylan Peuser</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Coffeyville CC (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Nate Stallard</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Quincy University (D2)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Ryan Jackson</div>
+          <div class="alumni-class">Class of 2025</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Fort Scott CC (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Alex Koelle</div>
+          <div class="alumni-class">Class of 2024</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Emporia State University (D2)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Nolan Haas</div>
+          <div class="alumni-class">Class of 2024</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Benedictine College (NAIA)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Paden Cole</div>
+          <div class="alumni-class">Class of 2024</div>
+          <div class="alumni-pos">C</div>
+          <div class="alumni-school">MSU West Plains (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-juco">JUCO</span></div>
+          <div class="alumni-name">Carson Hilton</div>
+          <div class="alumni-class">Class of 2024</div>
+          <div class="alumni-pos">OF</div>
+          <div class="alumni-school">Neosho County CC (JUCO)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d2">D2</span></div>
+          <div class="alumni-name">Nate Herken</div>
+          <div class="alumni-class">Class of 2024</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Missouri Western State (D2)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Eddie White</div>
+          <div class="alumni-class">Class of 2022</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Southeast Missouri State (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Dayvin Johnson</div>
+          <div class="alumni-class">Class of 2020</div>
+          <div class="alumni-pos">OF</div>
+          <div class="alumni-school">Iowa Western CC → University of Nebraska (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Jay Long</div>
+          <div class="alumni-class">Class of 2019</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Johnson County CC → SE Louisiana (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Matt Ronnebaum</div>
+          <div class="alumni-class">Class of 2019</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Johnson County CC → Army (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Danny Trehey</div>
+          <div class="alumni-class">Class of 2019</div>
+          <div class="alumni-pos">P</div>
+          <div class="alumni-school">Johnson County CC → Florida Atlantic (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Jackson Galloway</div>
+          <div class="alumni-class">Class of 2018</div>
+          <div class="alumni-pos">OF</div>
+          <div class="alumni-school">Johnson County CC → Middle Tennessee State (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Brad Kincaid</div>
+          <div class="alumni-class">Class of 2016</div>
+          <div class="alumni-pos">INF / P</div>
+          <div class="alumni-school">Johnson County CC → McNeese State (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Thomas Williams</div>
+          <div class="alumni-class">Class of 2015</div>
+          <div class="alumni-pos">C</div>
+          <div class="alumni-school">United States Naval Academy (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Ty Herrenbruck</div>
+          <div class="alumni-class">Class of 2015</div>
+          <div class="alumni-pos">INF / OF</div>
+          <div class="alumni-school">Johnson County CC → New Mexico State (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Jackson Layton</div>
+          <div class="alumni-class">Class of 2015</div>
+          <div class="alumni-pos">OF / 1B</div>
+          <div class="alumni-school">SIU Edwardsville (D1)</div>
+        </div>
+
+        <div class="alumni-card alumni-hidden">
+          <div><span class="alumni-badge badge-d1">D1</span></div>
+          <div class="alumni-name">Adam Thies</div>
+          <div class="alumni-class">Class of 2014</div>
+          <div class="alumni-pos">INF</div>
+          <div class="alumni-school">Wichita State University (D1)</div>
+        </div>
+
+      </div><!-- /alumni-grid -->
+
+      <div class="load-more-wrap">
+        <button class="btn btn-outline" id="loadMoreBtn" onclick="loadMore()">Load More Alumni ↓</button>
+        <div class="load-more-count" id="alumniCount">Showing 8 of 36 players</div>
       </div>
-      <p style="margin-top:2rem; color:var(--gray); font-size:0.9rem;">* Full alumni roster available — contact us for the complete list of Cavalier placements.</p>
+
     </div>
   </section>
 
@@ -870,7 +1199,7 @@
           </div>
           <div style="margin-top:1rem; padding:1.5rem; background:rgba(201,151,44,0.07); border:1px solid rgba(201,151,44,0.25); border-radius:4px;">
             <p style="font-family:var(--font-ui); font-size:0.85rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase;">Disclaimer</p>
-            <p style="font-size:0.82rem; color:var(--gray); margin-top:0.5rem; line-height:1.6;">Cavalier Baseball Club is a division of HC Baseball LLC and is in no way related to Johnson County Community College.</p>
+            <p style="font-size:0.82rem; color:var(--gray); margin-top:0.5rem; line-height:1.6;">Cavalier Baseball Club is a division of HC Baseball LLC and that it is in no way related to Johnson County Community College. I understand that all problems and disagreements will be taken up with HC Baseball LLC and not Johnson County Community College.</p>
           </div>
         </div>
       </div>
@@ -893,7 +1222,7 @@
       </div>
       <div class="footer-copy">
         © 2025 Cavalier Baseball Club · HC Baseball LLC. All Rights Reserved.
-        <div class="footer-disclaimer">Cavalier Baseball Club is a division of HC Baseball LLC and is in no way related to Johnson County Community College. All problems and disagreements will be taken up with HC Baseball LLC.</div>
+        <div class="footer-disclaimer">Cavalier Baseball Club is a division of HC Baseball LLC and that it is in no way related to Johnson County Community College. I understand that all problems and disagreements will be taken up with HC Baseball LLC and not Johnson County Community College.</div>
       </div>
     </div>
   </footer>
@@ -929,12 +1258,48 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.pillar, .stat-card, .coach-card, .alumni-card, .step').forEach(el => {
+    document.querySelectorAll('.pillar, .stat-card, .coach-card, .step').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(24px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(el);
     });
+
+    // Load More Alumni
+    const BATCH = 8;
+    let shown = 8;
+    const total = document.querySelectorAll('.alumni-card').length;
+
+    function updateCount() {
+      const countEl = document.getElementById('alumniCount');
+      const btn = document.getElementById('loadMoreBtn');
+      countEl.textContent = `Showing ${shown} of ${total} players`;
+      if (shown >= total) {
+        btn.textContent = 'All Players Shown ✓';
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'default';
+      }
+    }
+
+    function loadMore() {
+      const hidden = document.querySelectorAll('.alumni-card.alumni-hidden');
+      let revealed = 0;
+      hidden.forEach(card => {
+        if (revealed < BATCH) {
+          card.classList.remove('alumni-hidden');
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, revealed * 60);
+          revealed++;
+          shown++;
+        }
+      });
+      updateCount();
+    }
+
+    updateCount();
 
     // Form submit (placeholder)
     document.querySelector('.btn-gold[type="button"]').addEventListener('click', function() {
