@@ -1,1220 +1,2179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cavalier Baseball Club</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ═══════════════════════════════════════════════════════
+     SEO — Primary title targets the highest-volume query
+     Long-tail keywords are embedded in description + JSON-LD
+     ═══════════════════════════════════════════════════════ -->
+<title>Live D1 College Baseball Scores 2026 | NCAA Scoreboard &amp; Box Scores</title>
 
-  <style>
-    /* ── Reset & Variables ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<!-- Primary description — targets head + long-tail in one sentence -->
+<meta name="description" content="Live NCAA Division I college baseball scores, box scores, and linescores for every D1 game in 2026. Filter by SEC, ACC, Big 12, Big Ten, Sun Belt, SWAC, MEAC, and all conferences. Real-time ball/strike count, base runners, and outs updated every 15 seconds.">
 
-    :root {
-      --bg:      #ffffff;
-      --bg2:     #f7f3ee;
-      --maroon:  #7a1220;
-      --maroon2: #9b1828;
-      --gold:    #c9972c;
-      --gold2:   #e8b84b;
-      --dark:    #1a0a0d;
-      --white:   #ffffff;
-      --offwhite:#f7f3ee;
-      --gray:    #6b6b6b;
-      --lgray:   #d0ccc8;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-ui:      'Barlow Condensed', sans-serif;
-      --font-body:    'Barlow', sans-serif;
-    }
+<!-- Keywords — mix of head terms, conference-specific, and niche long-tail -->
+<meta name="keywords" content="
+  college baseball scores, live college baseball scores, NCAA baseball scores today,
+  D1 baseball scoreboard, NCAA D1 baseball live, college baseball box scores,
+  SEC baseball scores, ACC baseball scores, Big 12 baseball scores,
+  Big Ten baseball scores, Sun Belt baseball scores, Pac-12 baseball scores,
+  ACC baseball scoreboard, SEC baseball scoreboard live,
+  HBCU baseball scores, SWAC baseball scores, MEAC baseball scores,
+  live HBCU baseball, HBCU baseball scoreboard 2026,
+  college baseball scores today, college baseball games today,
+  college baseball linescore, college baseball live scoreboard,
+  NCAA baseball standings 2026, college baseball results today,
+  college baseball box score live, D1 baseball box scores,
+  college baseball pitcher stats, college baseball batting stats,
+  college baseball conference scores, college baseball stats leaders 2026,
+  diamond college baseball, live baseball count balls strikes outs
+">
 
-    html { scroll-behavior: smooth; }
+<meta name="robots" content="index, follow">
+<meta name="author" content="Diamond College Baseball">
+<link rel="canonical" href="https://www.diamondcollegebaseball.com/">
 
-    body {
-      background: var(--bg);
-      color: var(--dark);
-      font-family: var(--font-body);
-      overflow-x: hidden;
-    }
+<!-- Open Graph — used by Facebook, LinkedIn, iMessage previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.diamondcollegebaseball.com/">
+<meta property="og:title" content="Live D1 College Baseball Scores 2026 | NCAA Scoreboard">
+<meta property="og:description" content="Real-time NCAA D1 college baseball scores and box scores for every game. All conferences including SEC, ACC, Big 12, SWAC, and MEAC. Live count, bases, and outs updated every 15 seconds.">
+<meta property="og:site_name" content="Diamond College Baseball">
 
-    /* ── Utility ── */
-    .gold  { color: var(--gold); }
-    .red   { color: var(--maroon); }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Live D1 College Baseball Scores 2026 | NCAA Scoreboard">
+<meta name="twitter:description" content="Real-time NCAA D1 college baseball scores, box scores, and stats for every conference. Live count, bases, and outs. Updated every 15 seconds.">
+<meta name="twitter:site" content="@diamondcbb">
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 3rem;
-      background: rgba(255,255,255,0.98);
-      border-bottom: 3px solid var(--maroon);
-      transition: background 0.3s, box-shadow 0.3s;
+<!-- Structured Data — SportsEvent + WebSite schema -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Diamond College Baseball",
+    "alternateName": ["D1 Baseball Scores", "NCAA Baseball Scoreboard", "College Baseball Live Scores"],
+    "url": "https://www.diamondcollegebaseball.com/",
+    "description": "Live NCAA Division I college baseball scores, box scores, linescores, and stats for every D1 game in the 2026 season. Covers all conferences including SEC, ACC, Big 12, Big Ten, Sun Belt, SWAC, MEAC, and more.",
+    "inLanguage": "en-US",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.diamondcollegebaseball.com/?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
     }
-    nav.scrolled { box-shadow: 0 2px 20px rgba(122,18,32,0.12); }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "Diamond College Baseball",
+    "url": "https://www.diamondcollegebaseball.com/",
+    "sport": "Baseball",
+    "description": "Live scores, box scores, and statistics for NCAA Division I college baseball. Covering all D1 conferences with real-time updates including HBCU programs in the SWAC and MEAC."
+  }
+]
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYQPB7NH5N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XYQPB7NH5N');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8; --surface: #fffdf8; --surface2: #ede8de; --border: #928a7c;
+    --text: #0d0904; --muted: #5a5048; --accent: #b01c2e; --red: #b01c2e;
+    --blue: #1a4f7a; --live: #c0281e;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Mono',monospace; min-height:100vh; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; }
+  header { border-bottom:1px solid var(--border); padding:0 32px; display:flex; align-items:center;
+    justify-content:space-between; height:64px; position:sticky; top:0; background:var(--bg); z-index:100; }
+  .logo { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:var(--accent); cursor:pointer; user-select:none; }
+  .logo span { color:var(--muted); font-size:12px; letter-spacing:5px; display:block; margin-top:-6px;
+    font-family:'DM Mono',monospace; font-weight:300; }
+  .status-bar { display:flex; align-items:center; gap:20px; }
+  .live-badge { display:flex; align-items:center; gap:6px; font-size:10px; letter-spacing:3px; color:var(--live); font-weight:500; }
+  .live-dot { width:8px; height:8px; border-radius:50%; background:var(--live); animation:pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.85)} }
+  .last-updated { font-size:10px; color:var(--muted); letter-spacing:1px; }
 
-    .nav-logo {
-      display: flex; align-items: center; text-decoration: none;
-    }
-    .nav-logo img {
-      height: 50px; width: auto; border-radius: 0;
-    }
-    .nav-logo .logo-fallback {
-      display: none; align-items: center; gap: 0.75rem;
-    }
-    .nav-logo .diamond {
-      width: 42px; height: 42px; background: var(--maroon);
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 1.3rem; color: white; line-height: 1;
-    }
-    .nav-logo span {
-      font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.05em;
-      color: var(--maroon);
-    }
+  .ticker { background:var(--surface); border-bottom:1px solid var(--border); padding:8px 0; overflow:hidden; }
+  .ticker-inner { display:flex; gap:40px; animation:ticker 40s linear infinite; white-space:nowrap; }
+  .ticker-inner.paused { animation-play-state:paused; }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .ticker-item { font-size:10px; letter-spacing:1px; color:var(--muted); flex-shrink:0; }
+  .ticker-clickable[data-gameid] { cursor:pointer; }
+  .ticker-clickable[data-gameid]:hover { color:var(--accent); }
+  .tscore { color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:13px; }
+  .tlive { color:var(--live); }
 
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-family: var(--font-ui); font-size: 0.95rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark);
-      text-decoration: none; position: relative; padding-bottom: 4px;
-      transition: color 0.2s;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 100%;
-      height: 2px; background: var(--maroon); transition: right 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--maroon); }
-    .nav-links a:hover::after { right: 0; }
-    .nav-links .cta-link a {
-      background: var(--maroon); color: white; padding: 0.4rem 1rem;
-      border-radius: 2px;
-    }
-    .nav-links .cta-link a::after { display: none; }
-    .nav-links .cta-link a:hover { background: var(--maroon2); color: white; }
+  /* ── Stats ticker ── */
+  .stats-ticker-wrap { background:var(--bg); border-bottom:1px solid var(--border); }
+  .stats-ticker-tabs { display:flex; align-items:center; gap:0; border-bottom:1px solid var(--border); padding:0 16px; }
+  .stab { font-size:9px; letter-spacing:3px; color:var(--muted); padding:7px 14px; cursor:pointer;
+    border-bottom:2px solid transparent; transition:all .15s; background:none; border-top:none;
+    border-left:none; border-right:none; font-family:'DM Mono',monospace; }
+  .stab:hover { color:var(--text); }
+  .stab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .stab-label { font-size:9px; letter-spacing:3px; color:var(--muted); padding:7px 14px;
+    border-bottom:2px solid transparent; white-space:nowrap; }
+  .stats-ticker { overflow:hidden; padding:7px 0; position:relative; min-height:30px; }
+  .stats-ticker-inner { display:flex; gap:0; animation:sticker 60s linear infinite; white-space:nowrap; }
+  .stats-ticker-inner.paused { animation-play-state:paused; }
+  @keyframes sticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .stat-item { display:inline-flex; align-items:center; gap:8px; padding:0 24px;
+    border-right:1px solid var(--border); font-size:10px; flex-shrink:0; }
+  .stat-cat { color:var(--blue); letter-spacing:2px; font-size:9px; }
+  .stat-conf { color:var(--muted); letter-spacing:2px; font-size:8px; padding:1px 5px;
+    border:1px solid var(--border); border-radius:2px; }
+  .stat-player { color:var(--text); letter-spacing:.5px; }
+  .stat-team { color:var(--muted); font-size:9px; }
+  .stat-val { color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:1px; }
+  .stats-loading { font-size:9px; letter-spacing:3px; color:var(--muted); padding:7px 16px; }
+  .stats-divider { display:inline-flex; align-items:center; padding:0 20px; color:var(--border);
+    font-size:16px; flex-shrink:0; }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 28px; height: 2px; background: var(--maroon); transition: 0.3s; }
+  .date-strip { padding:12px 32px; display:flex; gap:4px; overflow-x:auto;
+    border-bottom:1px solid var(--border); scrollbar-width:none; }
+  .date-strip::-webkit-scrollbar { display:none; }
+  .date-chip { flex-shrink:0; padding:6px 14px; border-radius:2px; font-size:10px; letter-spacing:2px;
+    cursor:pointer; border:1px solid transparent; transition:all .15s; color:var(--muted);
+    white-space:nowrap; background:none; font-family:'DM Mono',monospace; }
+  .date-chip:hover { border-color:var(--border); color:var(--text); }
+  .date-chip.active { background:var(--accent); color:#fffdf8; font-weight:500; border-color:var(--accent); }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex; align-items: center;
-      overflow: hidden;
-    }
+  .filters { padding:12px 32px; display:flex; align-items:center; gap:8px;
+    border-bottom:1px solid var(--border); flex-wrap:wrap; row-gap:8px; }
+  .flabel { font-size:10px; color:var(--muted); letter-spacing:2px; }
+  .fbtn { padding:5px 12px; border:1px solid var(--border); background:none; color:var(--muted);
+    font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; cursor:pointer;
+    border-radius:2px; transition:all .15s; }
+  .fbtn:hover, .fbtn.active { border-color:var(--accent); color:var(--accent); }
+  .csel { padding:5px 28px 5px 10px; border:1px solid var(--border); background:var(--surface);
+    color:var(--muted); font-family:'DM Mono',monospace; font-size:10px; letter-spacing:1px;
+    cursor:pointer; border-radius:2px; outline:none; transition:border-color .15s,color .15s;
+    appearance:none; -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235a6270' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 8px center; }
+  .csel:hover, .csel:focus { border-color:var(--accent); color:var(--accent); }
+  .csel option { background:var(--surface2); color:var(--text); }
+  .sbox { margin-left:auto; display:flex; align-items:center; gap:8px;
+    border:1px solid var(--border); padding:5px 12px; border-radius:2px; }
+  .sbox input { background:none; border:none; color:var(--text); font-family:'DM Mono',monospace;
+    font-size:11px; width:160px; outline:none; letter-spacing:1px; }
+  .sbox input::placeholder { color:var(--muted); }
 
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 70% 50%, rgba(201,151,44,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(122,18,32,0.08) 0%, transparent 50%),
-        var(--maroon);
-    }
+  .main { padding:24px 32px; max-width:1400px; margin:0 auto; }
+  .sec-hdr { display:flex; align-items:center; gap:12px; margin-bottom:12px; margin-top:24px; }
+  .sec-hdr:first-child { margin-top:0; }
+  .sec-title { font-size:10px; letter-spacing:4px; color:var(--muted); }
+  .sec-cnt { font-size:10px; background:var(--surface2); color:var(--muted); padding:2px 8px; border-radius:2px; }
 
-    /* SVG baseball field lines */
-    .hero-field {
-      position: absolute; inset: 0;
-      opacity: 0.08;
-    }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:8px; background:transparent; border:none; }
 
+  .card { background:var(--surface); padding:18px 20px; transition:background .1s;
+    position:relative; overflow:hidden; border:1px solid var(--border); }
+  .card:hover { background:var(--surface2); border-color:var(--accent); }
+  .card.live { border-left:3px solid var(--live); }
+  .card.final { border-left:3px solid var(--muted); }
+  .card.scheduled { border-left:3px solid var(--blue); }
+  .card.live::before, .card.final::before { display:none; }
 
+  .gmeta { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .gstatus { font-size:9px; letter-spacing:3px; font-weight:500; }
+  .slive { color:var(--live); } .sfinal { color:var(--muted); } .ssched { color:var(--blue); }
+  .recinfo { font-size:9px; color:var(--muted); letter-spacing:1px; }
 
-    @keyframes float {
-      0%,100% { transform: translateY(-50%) rotate(0deg); }
-      50%      { transform: translateY(calc(-50% - 18px)) rotate(6deg); }
-    }
+  .teams { display:flex; flex-direction:column; gap:8px; }
+  .trow { display:flex; align-items:center; gap:12px; }
+  .trank { font-size:9px; color:var(--accent); width:20px; text-align:right; flex-shrink:0; }
+  .tlogo { width:28px; height:28px; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-size:10px; font-family:'Bebas Neue',sans-serif;
+    flex-shrink:0; border:1px solid var(--border); }
+  .tname { flex:1; font-size:13px; letter-spacing:.5px; }
+  .tscorebig { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px;
+    min-width:32px; text-align:right; }
+  .win { color:var(--accent); } .lose { color:var(--muted); }
 
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 3rem 0 4rem;
-      max-width: 680px;
-    }
-    .container .hero-content { padding-left: 0; }
+  .hbadge { display:inline-block; font-size:8px; letter-spacing:2px; padding:1px 5px;
+    background:rgba(176,28,46,.1); color:#b01c2e; border:1px solid rgba(176,28,46,.3);
+    border-radius:2px; margin-left:4px; vertical-align:middle; }
 
-    .hero-eyebrow {
-      font-family: var(--font-ui); font-weight: 600; font-size: 0.85rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold2); margin-bottom: 1.25rem;
-      display: flex; align-items: center; gap: 0.75rem;
-      animation: fadeUp 0.8s ease both;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 40px; height: 2px; background: var(--gold2);
-    }
+  .linescore { margin-top:12px; padding-top:12px; border-top:1px solid var(--border);
+    overflow-x:auto; scrollbar-width:none; }
+  .linescore::-webkit-scrollbar { display:none; }
+  .linescore table { width:100%; border-collapse:collapse; font-size:9px;
+    letter-spacing:1px; color:var(--muted); min-width:280px; }
+  .linescore th, .linescore td { text-align:center; padding:2px 5px; min-width:18px; }
+  .lbl { text-align:left !important; font-size:8px; }
+  .tot { color:var(--text); font-weight:500; border-left:1px solid var(--border); }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(4rem, 10vw, 8rem);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      color: white;
-      animation: fadeUp 0.8s ease 0.1s both;
-    }
-    .hero-title .line2 { color: var(--gold2); }
+  .gfoot { margin-top:10px; padding-top:10px; border-top:1px solid var(--border);
+    display:flex; justify-content:space-between; font-size:9px; color:var(--muted); letter-spacing:1px; }
+  .wpitch { color:var(--accent); } .lpitch { color:var(--red); }
 
-    .hero-sub {
-      font-family: var(--font-ui); font-weight: 400;
-      font-size: 1.15rem; letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.75); margin: 1.5rem 0 2.5rem;
-      max-width: 480px; line-height: 1.6;
-      animation: fadeUp 0.8s ease 0.2s both;
-    }
+  .diamond { position:relative; width:28px; height:28px; }
+  .base { position:absolute; width:7px; height:7px; border:1px solid var(--muted); }
+  .base.on { background:var(--accent); border-color:var(--accent); }
+  .bhome { bottom:0; left:50%; transform:translateX(-50%) rotate(45deg); }
+  .bfirst { right:0; top:50%; transform:translateY(-50%) rotate(45deg); }
+  .bsecond { top:0; left:50%; transform:translateX(-50%) rotate(45deg); }
+  .bthird { left:0; top:50%; transform:translateY(-50%) rotate(45deg); }
+  .outs { display:flex; gap:4px; align-items:center; }
+  .odot { width:6px; height:6px; border-radius:50%; border:1px solid var(--muted); }
+  .odot.on { background:var(--red); border-color:var(--red); }
+  .bases-row { display:flex; align-items:center; gap:10px; }
 
-    .hero-ctas {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      animation: fadeUp 0.8s ease 0.3s both;
-    }
+  .glinks { margin-top:10px; padding-top:10px; border-top:1px solid var(--border);
+    display:flex; gap:8px; flex-wrap:wrap; }
+  .glink { font-size:9px; letter-spacing:2px; padding:4px 10px; border:1px solid var(--border);
+    border-radius:2px; color:var(--muted); text-decoration:none; transition:all .15s;
+    display:inline-flex; align-items:center; gap:4px; }
+  .glink:hover { border-color:var(--accent); color:var(--accent); }
+  .glink.pri { border-color:var(--accent); color:var(--accent); }
+  .glink.pri:hover { background:var(--accent); color:#fffdf8; }
 
-    .btn {
-      font-family: var(--font-ui); font-weight: 700; font-size: 0.95rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.85rem 2.2rem; text-decoration: none;
-      border-radius: 2px; transition: all 0.25s ease; cursor: pointer;
-      display: inline-block; border: 2px solid transparent;
-    }
-    .btn-gold {
-      background: var(--gold); color: var(--dark);
-      border-color: var(--gold);
-    }
-    .btn-gold:hover {
-      background: var(--gold2); border-color: var(--gold2);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(201,151,44,0.4);
-    }
-    .btn-outline {
-      background: transparent; color: white;
-      border-color: rgba(255,255,255,0.5);
-    }
-    .btn-outline:hover {
-      border-color: white; background: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
-    }
+  .loading { text-align:center; padding:80px 0; font-size:11px; letter-spacing:3px; color:var(--muted); }
+  .lbar { width:120px; height:2px; background:var(--border); margin:16px auto 0;
+    overflow:hidden; border-radius:1px; }
+  .lbar::after { content:''; display:block; height:100%; width:40%; background:var(--accent);
+    animation:lload 1s ease-in-out infinite; }
+  @keyframes lload { 0%{transform:translateX(-100%)} 100%{transform:translateX(350%)} }
+  .empty { text-align:center; padding:60px 0; color:var(--muted); }
+  .empty .icon { font-size:40px; display:block; margin-bottom:12px; opacity:.3; }
+  .empty p { font-size:11px; letter-spacing:2px; }
 
-    .hero-stats {
-      position: absolute; bottom: 4rem; left: 0; right: 0;
-      animation: fadeUp 0.8s ease 0.5s both;
-    }
-    .hero-stats .container { display: flex; gap: 3rem; align-items: center; }
-    .stat-item { text-align: left; }
-    .stat-num {
-      font-family: var(--font-display); font-size: 3rem; color: var(--gold2);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 0.2rem;
-    }
-    .stat-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.2); }
+  /* ── Box score modal ── */
+  .bs-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:500;
+    align-items:center; justify-content:center; padding:20px; }
+  .bs-overlay.open { display:flex; }
+  .bs-modal { background:var(--surface); border:1px solid var(--border); border-radius:6px;
+    width:100%; max-width:700px; max-height:90vh; overflow-y:auto; position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,.6); }
+  .bs-header { padding:18px 20px 14px; border-bottom:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:flex-start; position:sticky;
+    top:0; background:var(--surface); z-index:2; }
+  .bs-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:var(--text); }
+  .bs-subtitle { font-size:9px; letter-spacing:2px; color:var(--muted); margin-top:2px; }
+  .bs-close { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer;
+    font-size:14px; width:28px; height:28px; border-radius:3px; display:flex; align-items:center;
+    justify-content:center; transition:all .15s; flex-shrink:0; font-family:'DM Mono',monospace; }
+  .bs-close:hover { border-color:var(--accent); color:var(--accent); }
+  .bs-body { padding:20px; }
+  .bs-score-row { display:flex; align-items:center; gap:16px; margin-bottom:20px;
+    padding-bottom:16px; border-bottom:1px solid var(--border); }
+  .bs-team { flex:1; }
+  .bs-tname { font-size:15px; letter-spacing:.5px; }
+  .bs-trec { font-size:9px; color:var(--muted); letter-spacing:1px; margin-top:2px; }
+  .bs-score { font-family:'Bebas Neue',sans-serif; font-size:48px; letter-spacing:1px; min-width:50px; text-align:center; }
+  .bs-win { color:var(--accent); } .bs-lose { color:var(--muted); }
+  .bs-vs { font-size:10px; color:var(--muted); letter-spacing:3px; }
+  .bs-section { margin-bottom:20px; }
+  .bs-section-title { font-size:9px; letter-spacing:3px; color:var(--muted); margin-bottom:10px;
+    padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .bs-table { width:100%; border-collapse:collapse; font-size:10px; }
+  .bs-table th { text-align:left; padding:4px 8px; color:var(--muted); font-size:8px;
+    letter-spacing:2px; font-weight:400; border-bottom:1px solid var(--border); }
+  .bs-table th.r, .bs-table td.r { text-align:right; }
+  .bs-table td { padding:5px 8px; border-bottom:1px solid rgba(30,48,80,.5); color:var(--text); }
+  .bs-table tr:last-child td { border-bottom:none; }
+  .bs-table tr.total-row td { color:var(--accent); border-top:1px solid var(--border); font-weight:500; }
+  .bs-name { color:var(--text); }
+  .bs-pos { color:var(--muted); font-size:9px; margin-left:4px; }
+  .bs-loading { text-align:center; padding:40px; font-size:10px; letter-spacing:3px; color:var(--muted); }
+  .bs-error { text-align:center; padding:40px; color:var(--muted); font-size:10px; letter-spacing:2px; }
+  .bs-pitrow-w { color:var(--accent); } .bs-pitrow-l { color:var(--red); } .bs-pitrow-s { color:var(--blue); }
+  .bs-linescore th, .bs-linescore td { text-align:center; padding:3px 6px; font-size:9px;
+    min-width:22px; color:var(--muted); }
+  .bs-linescore th { border-bottom:1px solid var(--border); }
+  .bs-linescore td.bs-lbl { text-align:left; color:var(--text); }
+  .bs-linescore td.bs-tot { color:var(--accent); border-left:1px solid var(--border); font-weight:500; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+  /* ── Stats Leaders Panel ── */
+  .sl-btn { padding:5px 12px; border:1px solid var(--border); background:none; color:var(--muted);
+    font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; cursor:pointer;
+    border-radius:2px; transition:all .15s; display:inline-flex; align-items:center; gap:6px; }
+  .sl-btn:hover, .sl-btn.open { border-color:var(--accent); color:var(--accent); }
+  .sl-btn.open { background:rgba(176,28,46,.06); }
+  .sl-filters-wrap { position:relative; }
+  .sl-panel { display:none; position:absolute; top:0; left:0; right:0; z-index:200;
+    background:var(--surface); border-bottom:2px solid var(--accent);
+    border-top:1px solid var(--border); padding:20px 32px 24px; box-shadow:0 4px 20px rgba(0,0,0,.1); }
+  .sl-panel.open { display:block; }
+  .sl-panel-inner { max-width:1400px; margin:0 auto; }
+  .sl-top { display:flex; align-items:center; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+  .sl-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:3px; color:var(--accent); }
+  .sl-scope { display:flex; gap:4px; }
+  .sl-stab { padding:4px 12px; border:1px solid var(--border); background:none; color:var(--muted);
+    font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; cursor:pointer;
+    border-radius:2px; transition:all .15s; }
+  .sl-stab:hover { border-color:var(--accent); color:var(--accent); }
+  .sl-stab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .sl-csel { padding:4px 24px 4px 10px; border:1px solid var(--border); background:var(--surface);
+    color:var(--text); font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px;
+    border-radius:2px; appearance:none; cursor:pointer; outline:none; }
+  .sl-csel:focus { border-color:var(--accent); }
+  .sl-close { margin-left:auto; padding:4px 10px; border:1px solid var(--border); background:none;
+    color:var(--muted); font-family:'DM Mono',monospace; font-size:9px; cursor:pointer;
+    border-radius:2px; letter-spacing:1px; }
+  .sl-close:hover { border-color:var(--red); color:var(--red); }
+  .sl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media(max-width:900px) { .sl-grid { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:560px) { .sl-grid { grid-template-columns:1fr; } }
+  .sl-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; overflow:hidden; }
+  .sl-card-hdr { background:var(--accent); color:#fff; padding:6px 12px;
+    font-size:9px; letter-spacing:3px; display:flex; justify-content:space-between; align-items:center; }
+  .sl-card-conf { font-size:8px; opacity:.8; letter-spacing:2px; }
+  .sl-row { display:flex; align-items:center; padding:7px 12px; border-bottom:1px solid var(--border);
+    gap:10px; transition:background .1s; }
+  .sl-row:last-child { border-bottom:none; }
+  .sl-row:hover { background:var(--surface); }
+  .sl-rank { font-size:9px; color:var(--muted); width:14px; flex-shrink:0; }
+  .sl-player { font-size:11px; color:var(--text); letter-spacing:.3px; }
+  .sl-team { font-size:9px; color:var(--muted); letter-spacing:.5px; }
+  .sl-val { font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--accent);
+    letter-spacing:1px; min-width:44px; text-align:right; }
+  .sl-val.pitcher { color:var(--blue); }
 
-    /* ── SECTION BASE ── */
-    section { padding: 6rem 0; }
+  /* ── Standings Panel ── */
+  .stnd-loading { font-size:10px; color:var(--muted); letter-spacing:2px; padding:8px 0; }
 
-    .section-label {
-      font-family: var(--font-ui); font-weight: 600; font-size: 0.8rem;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
-      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
-    }
-    .section-label::before { content: ''; width: 30px; height: 2px; background: var(--gold); }
+  @media(max-width:700px) {
+    /* Layout */
+    header { padding:0 14px; height:52px; }
+    .logo { font-size:22px; letter-spacing:2px; }
+    .logo span { font-size:10px; letter-spacing:3px; }
+    .last-updated { display:none; }
 
-    .section-title {
-      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1; letter-spacing: 0.02em; color: var(--dark);
-    }
+    .date-strip { padding:8px 14px; gap:6px; }
+    .date-chip { padding:5px 10px; font-size:9px; }
 
-    /* ── ABOUT ── */
-    .about { background: var(--offwhite); position: relative; overflow: hidden; }
-    .about::before {
-      content: 'C'; position: absolute; right: -0.1em; top: -0.2em;
-      font-family: var(--font-display); font-size: 40vw;
-      color: rgba(122,18,32,0.04); line-height: 1; pointer-events: none; user-select: none;
-    }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-copy p { font-size: 1.05rem; line-height: 1.8; color: #444; margin-top: 1.5rem; }
-    .about-copy .big-quote {
-      font-family: var(--font-display); font-size: 1.8rem; color: var(--maroon);
-      line-height: 1.3; margin-top: 2rem; border-left: 3px solid var(--gold); padding-left: 1.5rem;
-    }
-    .pillars { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
-    .pillar {
-      display: flex; gap: 1.5rem; align-items: flex-start;
-      padding: 1.5rem; background: white;
-      border: 1px solid rgba(122,18,32,0.1); border-radius: 4px;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .pillar:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(201,151,44,0.15); }
-    .pillar-icon {
-      width: 48px; height: 48px; min-width: 48px;
-      background: linear-gradient(135deg, var(--maroon), var(--maroon2));
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-    }
-    .pillar h3 { font-family: var(--font-ui); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--maroon); }
-    .pillar p { font-size: 0.9rem; color: var(--gray); margin-top: 0.3rem; line-height: 1.6; }
+    .filters { padding:8px 14px; gap:8px; }
+    .flabel { font-size:9px; }
+    .fbtn { padding:4px 9px; font-size:9px; }
+    .csel { font-size:9px; padding:4px 22px 4px 8px; }
+    .sbox { display:none; }
 
-    /* ── RECRUITING ── */
-    .recruiting { background: white; }
-    .recruiting-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .stat-card {
-      background: var(--offwhite); border: 1px solid rgba(122,18,32,0.12);
-      border-radius: 4px; padding: 1.75rem; position: relative; overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    }
-    .stat-card:hover { transform: translateY(-4px); border-color: var(--maroon); box-shadow: 0 8px 24px rgba(122,18,32,0.1); }
-    .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--maroon), var(--gold)); }
-    .stat-card .big { font-family: var(--font-display); font-size: 3.5rem; color: var(--maroon); }
-    .stat-card .label { font-family: var(--font-ui); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-top: 0.25rem; }
-    .recruiting-copy p { font-size: 1.05rem; line-height: 1.8; color: #444; margin-top: 1.5rem; }
-    .steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-    .step { display: flex; gap: 1.25rem; align-items: flex-start; }
-    .step-num {
-      width: 36px; height: 36px; min-width: 36px;
-      border: 2px solid var(--maroon); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 1rem; color: var(--maroon);
-    }
-    .step p { font-size: 0.95rem; color: #444; line-height: 1.5; padding-top: 0.4rem; }
+    .stats-ticker-tabs { padding:0 10px; }
+    .stab, .stab-label { font-size:8px; padding:6px 10px; }
 
-    /* ── TRYOUTS BANNER ── */
-    .tryouts-banner {
-      background: linear-gradient(135deg, var(--maroon) 0%, #5a0d18 100%);
-      padding: 5rem 0; position: relative; overflow: hidden;
-    }
-    .tryouts-banner::before {
-      content: 'TRYOUTS'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-      font-family: var(--font-display); font-size: 22vw; white-space: nowrap;
-      color: rgba(0,0,0,0.1); pointer-events: none; user-select: none;
-    }
-    .tryouts-inner { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .tryouts-text h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 0.02em; line-height: 1; color: white; }
-    .tryouts-text p { font-family: var(--font-ui); font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-top: 0.75rem; letter-spacing: 0.04em; }
-    .tryouts-details { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
-    .detail-box { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.25); border-radius: 4px; padding: 1rem 1.5rem; font-family: var(--font-ui); text-align: center; }
-    .detail-box .d-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
-    .detail-box .d-value { font-family: var(--font-display); font-size: 1.5rem; color: white; margin-top: 0.2rem; }
+    .main { padding:14px; }
+    .grid { grid-template-columns:1fr; gap:0; }
 
-    /* ── COACHES ── */
-    .coaches { background: var(--offwhite); }
-    .coaches-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
-    .coach-card {
-      background: white; border: 1px solid rgba(122,18,32,0.1);
-      border-radius: 4px; overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    }
-    .coach-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 12px 30px rgba(122,18,32,0.1); }
-    .coach-avatar {
-      height: 260px; background: linear-gradient(135deg, #d4a0a8, #7a1220);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .coach-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-    .coach-avatar .avatar-bg {
-      width: 100px; height: 100px; background: linear-gradient(135deg, var(--maroon), var(--maroon2));
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 2.5rem; color: white;
-    }
-    .coach-info { padding: 1.5rem; }
-    .coach-name { font-family: var(--font-ui); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--dark); }
-    .coach-role { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--maroon); margin-top: 0.2rem; }
-    .coach-bio { font-size: 0.88rem; color: var(--gray); margin-top: 0.75rem; line-height: 1.6; }
-    .coach-bio ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
-    .coach-bio ul li { display: flex; gap: 0.5rem; align-items: flex-start; }
-    .coach-bio ul li::before { content: '▸'; color: var(--gold); font-size: 0.7rem; margin-top: 0.25rem; flex-shrink: 0; }
+    /* Cards */
+    .card { padding:14px; }
+    .tname { font-size:12px; }
+    .tscorebig { font-size:24px; }
+    .tlogo { width:24px; height:24px; font-size:9px; }
+    .gstatus { font-size:8px; }
+    .recinfo { font-size:8px; }
+    .glinks { gap:6px; }
+    .glink { font-size:8px; padding:4px 8px; }
 
-    /* ── ALUMNI ── */
-    .alumni { background: white; }
-    .alumni-tabs { display: flex; gap: 0; margin-top: 2.5rem; border-bottom: 2px solid var(--lgray); }
-    .alumni-tab {
-      font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.75rem 1.5rem; cursor: pointer; color: var(--gray);
-      border-bottom: 2px solid transparent; margin-bottom: -2px;
-      background: none; border-top: none; border-left: none; border-right: none;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .alumni-tab.active { color: var(--maroon); border-bottom-color: var(--maroon); }
-    .alumni-tab:hover { color: var(--maroon); }
-    .alumni-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-top: 2rem; }
-    .alumni-card {
-      background: var(--offwhite); border: 1px solid var(--lgray);
-      border-radius: 4px; padding: 1.25rem;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    .alumni-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(201,151,44,0.15); }
-    .alumni-card.mlb { border-left: 3px solid var(--maroon); background: #fff8f8; }
-    .alumni-badge {
-      display: inline-block; font-family: var(--font-ui); font-size: 0.65rem;
-      font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 0.2rem 0.55rem; border-radius: 2px; margin-bottom: 0.6rem;
-    }
-    .badge-mlb  { background: var(--maroon); color: white; }
-    .badge-d1   { background: rgba(201,151,44,0.18); color: #7a5500; border: 1px solid rgba(201,151,44,0.45); }
-    .badge-d2   { background: rgba(122,18,32,0.08); color: var(--maroon); border: 1px solid rgba(122,18,32,0.2); }
-    .badge-d3   { background: rgba(0,0,0,0.05); color: #555; border: 1px solid rgba(0,0,0,0.15); }
-    .badge-juco { background: rgba(100,100,100,0.1); color: #555; border: 1px solid rgba(100,100,100,0.25); }
-    .badge-naia { background: rgba(0,100,60,0.08); color: #005c30; border: 1px solid rgba(0,100,60,0.25); }
-    .alumni-name   { font-family: var(--font-ui); font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--dark); }
-    .alumni-class  { font-size: 0.78rem; color: var(--gray); margin-top: 0.15rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .alumni-pos    { font-size: 0.8rem; color: var(--maroon); margin-top: 0.3rem; font-family: var(--font-ui); letter-spacing: 0.05em; font-weight: 600; }
-    .alumni-school { font-size: 0.85rem; color: #444; margin-top: 0.2rem; line-height: 1.4; }
-    .alumni-hidden { display: none; }
-    .load-more-wrap { text-align: center; margin-top: 2.5rem; }
-    .load-more-count { font-family: var(--font-ui); font-size: 0.85rem; color: var(--gray); margin-top: 1rem; letter-spacing: 0.05em; }
+    /* Box score modal */
+    .bs-overlay { padding:0; align-items:flex-end; }
+    .bs-modal { max-height:92vh; border-radius:12px 12px 0 0; }
+    .bs-score { font-size:32px; }
+    .bs-tname { font-size:13px; }
+    .bs-table { font-size:9px; }
+    .bs-table th, .bs-table td { padding:4px 5px; }
+    .bs-header { padding:14px 16px 10px; }
+    .bs-title { font-size:16px; }
+    .bs-body { padding:14px; }
 
-    /* ── CONTACT ── */
-    .contact { background: var(--offwhite); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
-    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-    .form-group label { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
-    .form-group input, .form-group textarea, .form-group select {
-      background: white; border: 1px solid var(--lgray);
-      border-radius: 3px; color: var(--dark); padding: 0.85rem 1rem;
-      font-family: var(--font-body); font-size: 0.95rem;
-      transition: border-color 0.2s, box-shadow 0.2s; outline: none;
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-      border-color: var(--maroon); box-shadow: 0 0 0 3px rgba(122,18,32,0.08);
-    }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-group select option { background: white; }
-    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
-    .contact-item { display: flex; gap: 1.25rem; align-items: flex-start; }
-    .contact-icon {
-      width: 48px; height: 48px; min-width: 48px;
-      background: rgba(122,18,32,0.07); border: 1px solid rgba(122,18,32,0.18);
-      border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
-    }
-    .contact-item h4 { font-family: var(--font-ui); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--maroon); }
-    .contact-item p { font-size: 0.95rem; color: #444; margin-top: 0.2rem; line-height: 1.5; }
-
-    /* ── FOOTER ── */
-    footer { background: var(--maroon); border-top: 4px solid var(--gold); padding: 3rem 0; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-logo { font-family: var(--font-display); font-size: 1.75rem; letter-spacing: 0.05em; color: white; }
-    .footer-logo span { color: var(--gold2); }
-    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
-    .footer-links a { font-family: var(--font-ui); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold2); }
-    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 2rem; text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.15); }
-    .footer-disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.5rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.5; }
-
-    /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; align-items: center; justify-content: center; gap: 2rem; z-index: 99; }
-      .nav-links.open { display: flex; }
-      .nav-links a { font-size: 1.5rem; }
-      .hamburger { display: flex; z-index: 101; }
-      .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-      .hamburger.open span:nth-child(2) { opacity: 0; }
-      .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-      .hero-content { padding: 5rem 0 10rem; }
-      .stitches { width: 200px; height: 200px; right: -20px; top: 30%; }
-      .hero-stats .container { gap: 1.5rem; flex-wrap: wrap; }
-      .about-grid, .recruiting-inner, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .coaches-grid { grid-template-columns: 1fr 1fr; }
-      .alumni-grid { grid-template-columns: 1fr 1fr; }
-      .stat-cards { grid-template-columns: 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .tryouts-inner { flex-direction: column; }
-    }
-    @media (max-width: 580px) {
-      .coaches-grid { grid-template-columns: 1fr; }
-      .alumni-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <a class="nav-logo" href="#">
-      <img src="Old_Logo.jpeg" alt="Cavalier Baseball Club"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <div class="logo-fallback">
-        <div class="diamond">C</div>
-        <span>Cavalier Baseball</span>
+<header>
+  <div class="logo">DIAMOND<span>NCAA D1 BASEBALL</span></div>
+  <div class="status-bar">
+    <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+    <div class="last-updated" id="lastUpdated">&mdash;</div>
+  </div>
+</header>
+
+<div class="ticker" id="tickerWrap">
+  <div class="ticker-inner" id="tickerInner">
+    <span class="ticker-item">Loading scores&hellip;</span>
+  </div>
+</div>
+
+<!-- Stats ticker -->
+<div class="stats-ticker-wrap">
+  <div class="stats-ticker-tabs">
+    <span class="stab-label">STAT LEADERS</span>
+    <button class="stab active" data-scope="overall">OVERALL D1</button>
+    <button class="stab" data-scope="conf">BY CONFERENCE</button>
+  </div>
+  <div class="stats-ticker" id="statsTickerWrap">
+    <div class="stats-loading" id="statsLoading">LOADING STATS&hellip;</div>
+    <div class="stats-ticker-inner" id="statsTickerInner" style="display:none"></div>
+  </div>
+</div>
+
+<div class="date-strip" id="dateStrip"></div>
+
+<div class="filters">
+  <span class="flabel">STATUS</span>
+  <button class="fbtn active" data-filter="all">ALL</button>
+  <button class="fbtn" data-filter="live">LIVE</button>
+  <button class="fbtn" data-filter="final">FINAL</button>
+  <button class="fbtn" data-filter="scheduled">UPCOMING</button>
+  <span class="flabel" style="margin-left:8px">CONF</span>
+  <select class="csel" id="confSelect">
+    <option value="all">ALL CONFERENCES</option>
+    <option value="hbcu">&#9733; HBCU (ALL)</option>
+    <option value="SWAC">SWAC (HBCU)</option>
+    <option value="MEAC">MEAC (HBCU)</option>
+    <option value="SEC">SEC</option>
+    <option value="ACC">ACC</option>
+    <option value="Pac-12">Pac-12 (Oregon St.)</option>
+    <option value="Big 12">Big 12</option>
+    <option value="Big Ten">Big Ten</option>
+    <option value="American">American Athletic</option>
+    <option value="Sun Belt">Sun Belt</option>
+    <option value="C-USA">Conference USA</option>
+    <option value="Big West">Big West</option>
+    <option value="MWC">Mountain West</option>
+    <option value="WCC">WCC</option>
+    <option value="MVC">Missouri Valley</option>
+    <option value="SoCon">Southern</option>
+    <option value="Southland">Southland</option>
+    <option value="OVC">Ohio Valley</option>
+    <option value="Patriot">Patriot League</option>
+    <option value="NEC">Northeast</option>
+    <option value="MAC">MAC</option>
+    <option value="WAC">WAC</option>
+  </select>
+  <span class="flabel" style="margin-left:8px">PANELS</span>
+  <button class="sl-btn" id="slBtn">&#9776; STAT LEADERS</button>
+  <button class="sl-btn" id="stndBtn">&#9660; STANDINGS</button>
+  <div class="sbox">
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--muted)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="SEARCH TEAM..." id="searchInput">
+  </div>
+</div>
+
+<!-- Stats Leaders Panel -->
+<div class="sl-filters-wrap" id="slWrap">
+  <div class="sl-panel" id="slPanel">
+    <div class="sl-panel-inner">
+      <div class="sl-top">
+        <span class="sl-title">STAT LEADERS</span>
+        <div class="sl-scope">
+          <button class="sl-stab active" data-sl-scope="overall">OVERALL D1</button>
+          <button class="sl-stab" data-sl-scope="conf">BY CONFERENCE</button>
+        </div>
+        <select class="sl-csel" id="slConfSel" style="display:none">
+          <option value="all">ALL CONFERENCES</option>
+          <option value="SEC">SEC</option>
+          <option value="ACC">ACC</option>
+          <option value="Big 12">Big 12</option>
+          <option value="Big Ten">Big Ten</option>
+          <option value="American">American Athletic</option>
+          <option value="Sun Belt">Sun Belt</option>
+          <option value="C-USA">Conference USA</option>
+          <option value="Big West">Big West</option>
+          <option value="MWC">Mountain West</option>
+          <option value="WCC">WCC</option>
+          <option value="MVC">Missouri Valley</option>
+          <option value="SoCon">Southern</option>
+          <option value="Southland">Southland</option>
+          <option value="OVC">Ohio Valley</option>
+          <option value="Patriot">Patriot League</option>
+          <option value="NEC">Northeast</option>
+          <option value="MAC">MAC</option>
+          <option value="WAC">WAC</option>
+          <option value="Pac-12">Pac-12</option>
+          <option value="SWAC">SWAC (HBCU)</option>
+          <option value="MEAC">MEAC (HBCU)</option>
+        </select>
+        <button class="sl-close" id="slClose">&#10005; CLOSE</button>
       </div>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#recruiting">Recruiting</a></li>
-      <li><a href="#coaches">Coaches</a></li>
-      <li><a href="#alumni">Alumni</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li class="cta-link"><a href="#tryouts">Tryouts</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-
-    <!-- Field lines SVG -->
-    <svg class="hero-field" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
-      <g stroke="white" stroke-width="1" fill="none">
-        <!-- baseline left -->
-        <line x1="600" y1="700" x2="150" y2="250"/>
-        <!-- baseline right -->
-        <line x1="600" y1="700" x2="1050" y2="250"/>
-        <!-- pitchers plate -->
-        <circle cx="600" cy="500" r="8"/>
-        <!-- bases -->
-        <rect x="592" y="292" width="16" height="16" transform="rotate(45 600 300)"/>
-        <rect x="342" y="492" width="16" height="16" transform="rotate(45 350 500)"/>
-        <rect x="842" y="492" width="16" height="16" transform="rotate(45 850 500)"/>
-        <!-- warning track arc -->
-        <path d="M 100 800 Q 600 -100 1100 800" stroke-dasharray="8,12"/>
-      </g>
-    </svg>
-
-
-    <div class="container">
-      <div class="hero-content">
-        <p class="hero-eyebrow">Kansas City · Est. 2010</p>
-        <h1 class="hero-title">
-          CAVALIER<br>
-          <span class="line2">BASEBALL</span><br>
-          CLUB
-        </h1>
-        <p class="hero-sub">Developing elite youth athletes with college-level fundamentals. 100% college placement. Zero excuses.</p>
-        <div class="hero-ctas">
-          <a href="#tryouts" class="btn btn-gold">Apply for Tryouts</a>
-          <a href="#about" class="btn btn-outline">Our Philosophy</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-stats">
-      <div class="container">
-        <div class="stat-item">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">College Placement</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Years Developing Players</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-num">D1</div>
-          <div class="stat-label">College Alumni</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-num">MLB</div>
-          <div class="stat-label">Alumni Drafted</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-copy">
-          <p class="section-label">The Cavalier Way</p>
-          <h2 class="section-title">We Don't<br><span class="gold">Cut Corners.</span></h2>
-          <p>Every athlete who wears the Cavalier uniform trains with the same concepts and fundamentals used at the collegiate level. We believe that exposure to elite coaching early gives our players a measurable edge as they progress through high school and beyond.</p>
-          <div class="big-quote">"We prepare players to compete at the next level — every rep, every practice, every game."</div>
-        </div>
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-icon">⚾</div>
-            <div>
-              <h3>College-Level Training</h3>
-              <p>We bring collegiate coaching methodology to youth development — building habits that carry players to the next level.</p>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🏆</div>
-            <div>
-              <h3>Character Development</h3>
-              <p>We coach the whole athlete — discipline, work ethic, leadership, and accountability aren't just baseball skills.</p>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">📈</div>
-            <div>
-              <h3>Results Driven</h3>
-              <p>100% college placement isn't luck — it's the product of a proven system that works for every player who commits to the process.</p>
-            </div>
-          </div>
-        </div>
+      <div class="sl-grid" id="slGrid">
+        <div style="font-size:10px;color:var(--muted);letter-spacing:2px;padding:8px 0">LOADING STATS&hellip;</div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- RECRUITING -->
-  <section class="recruiting" id="recruiting">
-    <div class="container">
-      <div class="recruiting-inner">
-        <div>
-          <p class="section-label">Recruiting</p>
-          <h2 class="section-title">Pathways to<br><span class="gold">College Ball</span></h2>
-          <div class="stat-cards" style="margin-top:2.5rem;">
-            <div class="stat-card">
-              <div class="big">14</div>
-              <div class="label">D1 Placements</div>
-            </div>
-            <div class="stat-card">
-              <div class="big">9</div>
-              <div class="label">D2 Placements</div>
-            </div>
-            <div class="stat-card">
-              <div class="big">3</div>
-              <div class="label">NAIA Placements</div>
-            </div>
-            <div class="stat-card">
-              <div class="big">10</div>
-              <div class="label">JUCO Placements</div>
-            </div>
-          </div>
-        </div>
-        <div class="recruiting-copy">
-          <p>Cavalier Baseball Club takes pride in preparing athletes for the recruitment process — both on and off the field. Our staff has built relationships with college programs across the country, and we leverage those connections for every player interested in playing at the college level.</p>
-
-          <div class="steps">
-            <div class="step">
-              <div class="step-num">1</div>
-              <p><strong>Evaluate and Align</strong> — We help players align their recruiting plans to their strengths and developmental opportunities.</p>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <p><strong>Showcase & Promote</strong> — We get players in front of the right coaches at the right events.</p>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <p><strong>Commit & Succeed</strong> — We celebrate placements and continue supporting athletes into their college careers.</p>
-            </div>
-          </div>
-          <div style="margin-top:2rem;">
-            <a href="#contact" class="btn btn-gold">Start the Process</a>
-          </div>
-        </div>
+<!-- Standings Panel -->
+<div class="sl-filters-wrap" id="stndWrap">
+  <div class="sl-panel" id="stndPanel">
+    <div class="sl-panel-inner">
+      <div class="sl-top">
+        <span class="sl-title">CONFERENCE STANDINGS</span>
+        <select class="sl-csel" id="stndConfSel">
+          <option value="SEC">SEC</option>
+          <option value="ACC">ACC</option>
+          <option value="Big 12">Big 12</option>
+          <option value="Big Ten">Big Ten</option>
+          <option value="American">American Athletic</option>
+          <option value="Sun Belt">Sun Belt</option>
+          <option value="C-USA">Conference USA</option>
+          <option value="Big West">Big West</option>
+          <option value="MWC">Mountain West</option>
+          <option value="WCC">WCC</option>
+          <option value="MVC">Missouri Valley</option>
+          <option value="SoCon">Southern</option>
+          <option value="Southland">Southland</option>
+          <option value="OVC">Ohio Valley</option>
+          <option value="Patriot">Patriot League</option>
+          <option value="NEC">Northeast</option>
+          <option value="MAC">MAC</option>
+          <option value="WAC">WAC</option>
+          <option value="Pac-12">Pac-12</option>
+          <option value="SWAC">SWAC</option>
+          <option value="MEAC">MEAC</option>
+        </select>
+        <button class="sl-close" id="stndClose">&#10005; CLOSE</button>
       </div>
+      <div id="stndBody"><div style="font-size:10px;color:var(--muted);letter-spacing:2px;padding:8px 0">SELECT A CONFERENCE&hellip;</div></div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- TRYOUTS BANNER -->
-  <section class="tryouts-banner" id="tryouts">
-    <div class="container">
-      <div class="tryouts-inner">
-        <div class="tryouts-text">
-          <h2>2025–2026<br>TRYOUTS</h2>
-          <p>Spots are still available. Are you ready to become a Cavalier?</p>
-          <div class="tryouts-details">
-            <div class="detail-box">
-              <div class="d-label">Season</div>
-              <div class="d-value">2025–2026</div>
-            </div>
-            <div class="detail-box">
-              <div class="d-label">Main Window</div>
-              <div class="d-value">End of July</div>
-            </div>
-            <div class="detail-box">
-              <div class="d-label">Spots</div>
-              <div class="d-value">Limited</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.6); font-size:1.1rem; padding:1rem 2.5rem;">Register Interest →</a>
-        </div>
+<div class="main" id="main">
+  <div class="loading"><div>LOADING SCORES</div><div class="lbar"></div></div>
+</div>
+
+<!-- Box Score Modal -->
+<div class="bs-overlay" id="bsOverlay">
+  <div class="bs-modal" id="bsModal">
+    <div class="bs-header">
+      <div>
+        <div class="bs-title" id="bsTitle">BOX SCORE</div>
+        <div class="bs-subtitle" id="bsSubtitle"></div>
       </div>
+      <button class="bs-close" id="bsClose">&#10005;</button>
     </div>
-  </section>
-
-  <!-- COACHES -->
-  <section class="coaches" id="coaches">
-    <div class="container">
-      <p class="section-label">Leadership</p>
-      <h2 class="section-title">Meet the <span class="gold">Coaching Staff</span></h2>
-      <div class="coaches-grid">
-
-        <!-- David Canary -->
-        <div class="coach-card">
-          <div class="coach-avatar">
-            <img src="canary.webp"
-                 alt="David Canary" style="width:100%;height:100%;object-fit:cover;object-position:top center;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="avatar-bg" style="display:none;">DC</div>
-          </div>
-          <div class="coach-info">
-            <div class="coach-name">David Canary</div>
-            <div class="coach-role">Founder / Coach</div>
-            <div class="coach-bio">
-              <ul>
-                <li>Former JCCC Assistant Baseball Coach (2008–2022)</li>
-                <li>KC Sluggers 18U Head Coach (2008)</li>
-                <li>Union University Assistant Coach (2005–2007)</li>
-                <li>Played at Union University (2003–2004)</li>
-                <li>Played at Johnson County CC (2001–2002)</li>
-                <li>Played at Cookeville High School, TN (1997–2000)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Jake VanVacter -->
-        <div class="coach-card">
-          <div class="coach-avatar">
-            <img src="VanVacter.webp"
-                 alt="Jake VanVacter" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="avatar-bg" style="display:none;">JV</div>
-          </div>
-          <div class="coach-info">
-            <div class="coach-name">Jake VanVacter</div>
-            <div class="coach-role">HS Director / Recruiting Coordinator</div>
-            <div class="coach-bio">
-              <ul>
-                <li>Played at Metropolitan CC – Maple Woods</li>
-                <li>Played at Park University</li>
-                <li>Played at Valley City State College</li>
-                <li>Coached at Valley City State College</li>
-                <li>Coached at Bismarck State College</li>
-                <li>Current Assistant Coach at JCCC (2023–Present)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Alex Lahasky -->
-        <div class="coach-card">
-          <div class="coach-avatar">
-            <img src="Lahasky.webp"
-                 alt="Alex Lahasky" style="width:100%;height:100%;object-fit:cover;object-position:top center;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="avatar-bg" style="display:none;">AL</div>
-          </div>
-          <div class="coach-info">
-            <div class="coach-name">Alex Lahasky</div>
-            <div class="coach-role">HS Director</div>
-            <div class="coach-bio">
-              <ul>
-                <li>Played at Johnson County CC (2010–2011)</li>
-                <li>Played at William Carey University (2012–2013)</li>
-                <li>JCCC Academic All-American (2011)</li>
-                <li>Coached at William Carey University (2013–2014)</li>
-                <li>Coached at Pittsburg State University (2014–2015)</li>
-                <li>Head Coach, Blue Valley West HS (2016–Present)</li>
-              </ul>
-            </div>
-          </div>
-        </div><!-- /coaches-grid -->
-
+    <div class="bs-body" id="bsBody">
+      <div class="bs-loading">LOADING&hellip;</div>
     </div>
-  </section>
-  <section class="alumni" id="alumni">
-    <div class="container">
-      <p class="section-label">Cavaliers in College & MLB</p>
-      <h2 class="section-title">Our <span class="gold">Alumni</span></h2>
-      <p style="margin-top:1rem; color:var(--gray); max-width:600px; line-height:1.7;">From the KC metro to the pros — 100% of Cavaliers who wanted to play in college did exactly that.</p>
+  </div>
+</div>
 
-      <div class="alumni-grid" id="alumniGrid">
+<script>
+/* D1 Baseball Live Scores */
 
-        <!-- MLB PLAYERS FIRST -->
-        <div class="alumni-card mlb">
-          <div><span class="alumni-badge badge-mlb">⚾ MLB</span></div>
-          <div class="alumni-name">Alex King</div>
-          <div class="alumni-class">Class of 2014</div>
-          <div class="alumni-pos">INF</div>
-          <div class="alumni-school">St. Louis University (D1) → Arizona Diamondbacks</div>
-        </div>
+// ── State ─────────────────────────────────────────────────────────────────────
+var allGames    = [];
+var selDate     = '';
+var statusFilt  = 'all';
+var confFilt    = 'all';
+var searchQ     = '';
 
-        <div class="alumni-card mlb">
-          <div><span class="alumni-badge badge-mlb">⚾ MLB</span></div>
-          <div class="alumni-name">Jacob Means</div>
-          <div class="alumni-class">Class of 2014</div>
-          <div class="alumni-pos">INF / P</div>
-          <div class="alumni-school">Cowley CC → Indiana State (D1) → Kansas City Royals</div>
-        </div>
 
-        <div class="alumni-card mlb">
-          <div><span class="alumni-badge badge-mlb">⚾ MLB</span></div>
-          <div class="alumni-name">Jacob Sylvester</div>
-          <div class="alumni-class">Class of 2014</div>
-          <div class="alumni-pos">RHP</div>
-          <div class="alumni-school">Iowa Western CC → Cal State Northridge (D1) → St. Louis Cardinals</div>
-        </div>
+var SB = {
+  'Abilene Christian':'achr','Air Force':'afa','Alabama':'alab','Alabama State':'alst',
+  'App State':'appa','Appalachian State':'appa','Arizona':'ariz','Arizona State':'asu',
+  'Arkansas':'ark','Arkansas State':'aru','Auburn':'aub','Austin Peay':'ausp',
+  'Ball State':'ball','Baylor':'bay','Belmont':'belm','Boise State':'bosu',
+  'Boston College':'bc','Bradley':'brad','Butler':'butl','BYU':'byu',
+  'Cal':'cal','California':'cal','Cal Poly':'cslo','California Baptist':'calb',
+  'Cal Baptist':'calb','Campbell':'camb','Charleston':'chac','Charlotte':'ncch',
+  'Chattanooga':'tenc','Chicago State':'chst','Cincinnati':'cinn','Clemson':'clem',
+  'Coastal Carolina':'coas','Colorado':'colo','Colorado State':'csu',
+  'Columbia':'colm','Creighton':'crei','Dallas Baptist':'dbap','DBU':'dbap',
+  'Dayton':'dayt','Delaware':'dela','DePaul':'depa','Drake':'drak','Drexel':'drex',
+  'Duke':'duke','ECU':'ecu','East Carolina':'ecu','Eastern Kentucky':'eky','EKU':'eky',
+  'Eastern Michigan':'emu','Elon':'elon','ETSU':'etsu','East Tennessee State':'etsu',
+  'Evansville':'evan','Florida':'fla','Florida Atlantic':'fau','Florida Gulf Coast':'fguu',
+  'FGCU':'fguu','FIU':'flin','Florida International':'flin','Florida State':'fsu',
+  'Fresno State':'fres','Furman':'furm','Gardner-Webb':'gard','GCU':'gcan',
+  'Grand Canyon':'gcan','George Mason':'gema','Georgetown':'gu','Georgia':'geo',
+  'Georgia Southern':'geos','Georgia State':'gest','Georgia Tech':'geot',
+  'Gonzaga':'gonz','Hampton':'hamp','Hawaii':'haw','Hofstra':'hofs',
+  'Houston':'hou','Houston Christian':'houb','HBU':'houb','Idaho State':'idsu',
+  'Illinois':'ill','Illinois State':'ilsu','Incarnate Word':'inca','Indiana':'ind',
+  'Indiana State':'insu','Iowa':'iowa','Iowa State':'iast','Jackson State':'jast',
+  'Jacksonville State':'jkst','James Madison':'jame','Kansas':'kan',
+  'Kansas State':'ksu','Kennesaw State':'kenn','Kentucky':'kty','Lamar':'lama',
+  'Long Beach State':'lbst','LBSU':'lbst','Liberty':'libe','Lipscomb':'lips',
+  'Little Rock':'arkl','Louisiana':'ulaf','UL Lafayette':'ulaf','Louisiana Tech':'latc',
+  'Louisville':'lou','Loyola Marymount':'loyo','LMU':'loyo','Loyola Chicago':'loyc',
+  'LSU':'lsu','Maine':'main','Marshall':'mars','Maryland':'mary','McNeese':'mcns',
+  'McNeese State':'mcns','Memphis':'memp','Mercer':'merc','Miami':'miaf',
+  'Miami (FL)':'miaf','Michigan':'mich','Michigan State':'mist','Middle Tennessee':'mitn',
+  'Minnesota':'minn','Mississippi State':'msst','Missouri':'miss','Missouri State':'most',
+  'Monmouth':'monh','Murray State':'mray','Navy':'navy','Nebraska':'neb',
+  'Nevada':'nev','New Mexico':'unm','New Mexico State':'nmst','NMSU':'nmst',
+  'Nicholls':'nich','Nicholls State':'nich','North Carolina':'unc','UNC':'unc',
+  'NC State':'ncst','North Carolina State':'ncst','North Dakota State':'ndsu',
+  'Northern Illinois':'niuu','Northwestern':'nwst','Notre Dame':'nd',
+  'Ohio':'ohio','Ohio State':'ohst','Oklahoma':'okla','Oklahoma State':'okst',
+  'Ole Miss':'miss2','Oregon':'oreg','Oregon State':'orst','Penn State':'penn',
+  'Pittsburgh':'pitt','Pitt':'pitt','Prairie View A&M':'pvam','Purdue':'purd',
+  'Rice':'rice','Rutgers':'rutg','Sam Houston':'sams','Sam Houston State':'sams',
+  'San Diego State':'sdst','Santa Clara':'sncl','SFA':'sfau',
+  'Stephen F. Austin':'sfau','South Alabama':'soal','South Carolina':'soca',
+  'South Florida':'sfla','USF':'sfla','Southeast Missouri State':'semo',
+  'Southeastern Louisiana':'sela','Southern':'souu','Southern Miss':'smis',
+  'Southern Mississippi':'smis','Stanford':'stan','Stetson':'stet',
+  'Stony Brook':'ston','TCU':'tcu','Temple':'temp','Tennessee':'tenn',
+  'Tennessee Tech':'tete','Texas':'tex','Texas A&M':'tamu',
+  'Texas A&M-Corpus Christi':'tamc','Texas Southern':'tsou','Texas State':'txst',
+  'Texas Tech':'ttch','Toledo':'tole','Troy':'troy','Tulane':'tula','Tulsa':'tuls',
+  'UAB':'uab','UCF':'ucf','UCLA':'ucla','UConn':'ucon','UMBC':'umbc',
+  'UMass':'mass','UMass Lowell':'masl','UNCG':'uncg','UNC Greensboro':'uncg',
+  'UNLV':'unlv','UNT':'nttx','North Texas':'nttx','USC':'usc','Utah':'utah',
+  'Utah Valley':'uvuu','UVU':'uvuu','UTEP':'utep','UTSA':'utsa',
+  'Valparaiso':'valp','Vanderbilt':'vand','VCU':'vcur','Virginia':'virg',
+  'Virginia Tech':'vtec','VMI':'vmil','Wagner':'wagn','Wake Forest':'wake',
+  'Washington':'wash','Washington State':'wast','West Virginia':'wvir','WVU':'wvir',
+  'Western Illinois':'weil','Western Kentucky':'wkyu','WKU':'wkyu',
+  'Western Michigan':'wemi','Wichita State':'wich','William & Mary':'wm',
+  'Wisconsin':'wisc','Wofford':'woff','Wright State':'wrst','Wyoming':'wyo',
+  'Xavier':'xavi','Yale':'yale'
+};
 
-        <div class="alumni-card mlb">
-          <div><span class="alumni-badge badge-mlb">⚾ Pro</span></div>
-          <div class="alumni-name">Brock Gilliam</div>
-          <div class="alumni-class">Class of 2016</div>
-          <div class="alumni-pos">P / SS</div>
-          <div class="alumni-school">Washburn University → Kansas City Monarchs (Pro)</div>
-        </div>
 
-        <!-- RECENT COLLEGE PLAYERS — first 4 visible -->
-        <div class="alumni-card">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Carter King</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">OF</div>
-          <div class="alumni-school">Emporia State University (D2)</div>
-        </div>
+var SD = {
+  'Air Force':'goairforcefalcons.com','Alabama':'rolltide.com',
+  'Appalachian State':'appstatesports.com','App State':'appstatesports.com',
+  'Arizona':'arizonawildcats.com','Arizona State':'thesundevils.com',
+  'Arkansas':'arkansasrazorbacks.com','Arkansas State':'astateredwolves.com',
+  'Auburn':'auburntigers.com','Baylor':'baylorbears.com',
+  'Boston College':'bceagles.com','BYU':'byucougars.com',
+  'Cal':'calbears.com','California':'calbears.com',
+  'Cal Poly':'gopoly.com','Clemson':'clemsontigers.com',
+  'Coastal Carolina':'goccusports.com','Colorado':'cubuffs.com',
+  'Colorado State':'csurams.com','Creighton':'gocreighton.com',
+  'Duke':'goduke.com','East Carolina':'ecupirates.com','ECU':'ecupirates.com',
+  'EKU':'ekusports.com','Eastern Kentucky':'ekusports.com',
+  'Florida':'floridagators.com','Florida Atlantic':'fausports.com',
+  'Florida State':'seminoles.com','Fresno State':'gobulldogs.com',
+  'Furman':'furmanpaladins.com','Georgia':'georgiadogs.com',
+  'Georgia Southern':'gseagles.com','Georgia State':'georgiastatesports.com',
+  'Georgia Tech':'ramblinwreck.com','Gonzaga':'gozags.com',
+  'Houston':'uhcougars.com','Illinois':'fightingillini.com',
+  'Indiana':'iuhoosiers.com','Iowa':'hawkeyesports.com',
+  'Iowa State':'cyclones.com','Kansas':'kuathletics.com',
+  'Kansas State':'kstatesports.com','Kentucky':'ukathletics.com',
+  'Liberty':'libertyflames.com','Louisiana':'ragincajuns.com',
+  'UL Lafayette':'ragincajuns.com','Louisiana Tech':'latechsports.com',
+  'Louisville':'gocards.com','LSU':'lsusports.net',
+  'Maryland':'umterps.com','Memphis':'gotigersgo.com',
+  'Miami (FL)':'hurricanesports.com','Miami':'hurricanesports.com',
+  'Michigan':'mgoblue.com','Michigan State':'msuspartans.com',
+  'Minnesota':'gophersports.com','Mississippi State':'hailstate.com',
+  'Missouri':'mutigers.com','NC State':'gopack.com',
+  'North Carolina State':'gopack.com','Nebraska':'huskers.com',
+  'Nevada':'nevadawolfpack.com','New Mexico State':'nmstatesports.com',
+  'NMSU':'nmstatesports.com','North Carolina':'tarheelblue.com','UNC':'tarheelblue.com',
+  'Notre Dame':'und.com','Ohio State':'ohiostatebuckeyes.com',
+  'Oklahoma':'soonersports.com','Oklahoma State':'okstate.com',
+  'Ole Miss':'olemisssports.com','Oregon':'goducks.com',
+  'Oregon State':'osubeavers.com','Penn State':'gopsusports.com',
+  'Pittsburgh':'pittsburghpanthers.com','Pitt':'pittsburghpanthers.com',
+  'Purdue':'purduesports.com','Rice':'riceowls.com','Rutgers':'scarletknights.com',
+  'Sam Houston':'bearkatsports.com','Sam Houston State':'bearkatsports.com',
+  'South Alabama':'usajaguars.com','South Carolina':'gamecocksonline.com',
+  'South Florida':'gousfbulls.com','USF':'gousfbulls.com',
+  'Stanford':'gostanford.com','Stetson':'stetsonathletics.com',
+  'TCU':'gofrogs.com','Tennessee':'utsports.com','Texas':'texassports.com',
+  'Texas A&M':'12thman.com','Texas State':'txstatebobcats.com',
+  'Texas Tech':'texastech.com','Tulane':'tulanegreenwave.com',
+  'UCF':'ucfknights.com','UCLA':'uclabruins.com','UConn':'uconnhuskies.com',
+  'UNLV':'unlvrebels.com','USC':'usctrojans.com','Utah':'utahutes.com',
+  'UTEP':'utepminers.com','UTSA':'utsaathletics.com',
+  'Vanderbilt':'vucommodores.com','VCU':'vcuathletics.com',
+  'Virginia':'virginiasports.com','Virginia Tech':'hokiesports.com',
+  'Wake Forest':'wakeforestsports.com','Washington':'gohuskies.com',
+  'Washington State':'wsucougars.com','West Virginia':'wvusports.com','WVU':'wvusports.com',
+  'Western Kentucky':'wkusports.com','WKU':'wkusports.com',
+  'Wichita State':'goshockers.com','Wisconsin':'uwbadgers.com','Wyoming':'gowyo.com'
+};
 
-        <div class="alumni-card">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Dylan Orsund</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Kansas City Kansas CC (JUCO)</div>
-        </div>
+// ── Conference map (keyed on ESPN shortDisplayName) ───────────────────────────
+var CM = {
+  'Boston College':'ACC','Clemson':'ACC','Duke':'ACC','Florida State':'ACC',
+  'Georgia Tech':'ACC','Louisville':'ACC','Miami':'ACC','NC State':'ACC',
+  'North Carolina':'ACC','Notre Dame':'ACC','Pittsburgh':'ACC','Virginia':'ACC',
+  'Virginia Tech':'ACC','Wake Forest':'ACC',
+  'Alabama':'SEC','Arkansas':'SEC','Auburn':'SEC','Florida':'SEC',
+  'Georgia':'SEC','Kentucky':'SEC','LSU':'SEC','Mississippi State':'SEC',
+  'Missouri':'SEC','Ole Miss':'SEC','Oklahoma':'SEC','South Carolina':'SEC',
+  'Tennessee':'SEC','Texas':'SEC','Texas A&M':'SEC','Vanderbilt':'SEC',
+  'Baylor':'Big 12','BYU':'Big 12','Cincinnati':'Big 12','Houston':'Big 12',
+  'Iowa State':'Big 12','Kansas':'Big 12','Kansas State':'Big 12',
+  'Oklahoma State':'Big 12','TCU':'Big 12','Texas Tech':'Big 12',
+  'UCF':'Big 12','West Virginia':'Big 12',
+  'Illinois':'Big Ten','Indiana':'Big Ten','Iowa':'Big Ten','Maryland':'Big Ten',
+  'Michigan':'Big Ten','Michigan State':'Big Ten','Minnesota':'Big Ten',
+  'Nebraska':'Big Ten','Northwestern':'Big Ten','Ohio State':'Big Ten',
+  'Penn State':'Big Ten','Purdue':'Big Ten','Rutgers':'Big Ten',
+  'Arizona':'Big 12','Arizona State':'Big 12','Colorado':'Big 12',
+  'Utah':'Big 12','Washington':'Big 12',
+  'Washington State':'MWC',
+  'UCLA':'Big Ten','USC':'Big Ten',
+  'Oregon':'ACC','Stanford':'ACC','Cal':'ACC','California':'ACC',
+  'Oregon State':'Pac-12',
+  'Charlotte':'American','East Carolina':'American','Florida Atlantic':'American',
+  'Memphis':'American','Navy':'American','Rice':'American','South Florida':'American',
+  'Temple':'American','Tulane':'American','Tulsa':'American','UTSA':'American',
+  'Wichita State':'American',
+  'App State':'Sun Belt','Appalachian State':'Sun Belt','Arkansas State':'Sun Belt',
+  'Coastal Carolina':'Sun Belt','Georgia Southern':'Sun Belt','Georgia State':'Sun Belt',
+  'James Madison':'Sun Belt','Louisiana':'Sun Belt','UL Lafayette':'Sun Belt',
+  'Louisiana Monroe':'Sun Belt','UL Monroe':'Sun Belt','Old Dominion':'Sun Belt',
+  'South Alabama':'Sun Belt','Southern Miss':'Sun Belt','Texas State':'Sun Belt',
+  'Troy':'Sun Belt',
+  'FIU':'C-USA','Florida International':'C-USA','Jacksonville State':'C-USA',
+  'Kennesaw State':'C-USA','Liberty':'C-USA','Louisiana Tech':'C-USA',
+  'Middle Tennessee':'C-USA','New Mexico State':'C-USA','Sam Houston':'C-USA',
+  'Dallas Baptist':'C-USA','DBU':'C-USA',
+  'UTEP':'C-USA','Western Kentucky':'C-USA','WKU':'C-USA',
+  'Cal Poly':'Big West','Cal State Fullerton':'Big West','CS Fullerton':'Big West',
+  'Cal State Northridge':'Big West','CSUN':'Big West','Hawaii':'Big West',
+  'Long Beach State':'Big West','UC Davis':'Big West','UC Irvine':'Big West',
+  'UC Riverside':'Big West','UC San Diego':'Big West','UC Santa Barbara':'Big West',
+  'Air Force':'MWC','Fresno State':'MWC','Nevada':'MWC','New Mexico':'MWC',
+  'San Diego State':'MWC','San Jose State':'MWC','UNLV':'MWC','Utah State':'MWC',
+  'Wyoming':'MWC','Boise State':'MWC','Colorado State':'MWC',
+  'Gonzaga':'WCC','LMU':'WCC','Loyola Marymount':'WCC','Pepperdine':'WCC',
+  'Portland':'WCC','San Diego':'WCC','San Francisco':'WCC','Santa Clara':'WCC',
+  'Saint Marys':'WCC','St. Marys':'WCC','Saint Mary':'WCC','St. Mary':'WCC',
+  'Bradley':'MVC','Evansville':'MVC',
+  'Illinois State':'MVC','Indiana State':'MVC','Missouri State':'MVC',
+  'Southern Illinois':'MVC','SIU':'MVC','UIC':'MVC',
+  'The Citadel':'SoCon','East Tennessee State':'SoCon','ETSU':'SoCon',
+  'Furman':'SoCon','Mercer':'SoCon','Samford':'SoCon','UNC Greensboro':'SoCon',
+  'Western Carolina':'SoCon','Wofford':'SoCon','VMI':'SoCon',
+  'Houston Christian':'Southland','HBU':'Southland',
+  'Incarnate Word':'Southland','Lamar':'Southland','McNeese':'Southland',
+  'McNeese State':'Southland','Nicholls':'Southland','Nicholls State':'Southland',
+  'Northwestern State':'Southland','SE Louisiana':'Southland',
+  'Southeastern Louisiana':'Southland','Stephen F. Austin':'Southland','SFA':'Southland',
+  'Texas A&M-Corpus Christi':'Southland',
+  'Austin Peay':'OVC','Bellarmine':'OVC','Eastern Illinois':'OVC',
+  'Eastern Kentucky':'OVC','Illinois-Chicago':'OVC','Jacksonville':'OVC',
+  'Morehead State':'OVC','Murray State':'OVC','Southern Indiana':'OVC',
+  'Tennessee Martin':'OVC','UT Martin':'OVC','Tennessee State':'OVC',
+  'Tennessee Tech':'OVC',
+  'Army':'Patriot','Bucknell':'Patriot','Holy Cross':'Patriot','Lafayette':'Patriot',
+  'Lehigh':'Patriot',
+  'Bryant':'NEC','Central Connecticut':'NEC','CCSU':'NEC','Fairleigh Dickinson':'NEC',
+  'LIU':'NEC','Long Island University':'NEC','Merrimack':'NEC',
+  'Sacred Heart':'NEC','Saint Francis':'NEC','Wagner':'NEC',
+  'Ball State':'MAC','Bowling Green':'MAC','Buffalo':'MAC','Central Michigan':'MAC',
+  'Eastern Michigan':'MAC','Kent State':'MAC','Miami (OH)':'MAC','Northern Illinois':'MAC',
+  'Ohio':'MAC','Toledo':'MAC','Western Michigan':'MAC',
+  'Abilene Christian':'WAC','California Baptist':'WAC','Cal Baptist':'WAC',
+  'Grand Canyon':'WAC','GCU':'WAC',
+  'Sam Houston State':'WAC','Southern Utah':'WAC','Tarleton State':'WAC',
+  'Tarleton':'WAC','UT Arlington':'WAC','UTA':'WAC',
+  'Utah Valley':'WAC','UVU':'WAC',
+  'Alabama A&M':'SWAC','Alabama State':'SWAC','Alcorn State':'SWAC',
+  'Arkansas-Pine Bluff':'SWAC','Bethune-Cookman':'SWAC','Florida A&M':'SWAC',
+  'Grambling':'SWAC','Grambling State':'SWAC','Jackson State':'SWAC',
+  'Mississippi Valley State':'SWAC','Prairie View A&M':'SWAC',
+  'Southern':'SWAC','Southern University':'SWAC','Texas Southern':'SWAC',
+  'Coppin State':'MEAC','Delaware State':'MEAC','Howard':'MEAC',
+  'Maryland-Eastern Shore':'MEAC','Morgan State':'MEAC','Norfolk State':'MEAC',
+  'North Carolina A&T':'MEAC','North Carolina Central':'MEAC',
+  'Savannah State':'MEAC','South Carolina State':'MEAC'
+};
 
-        <div class="alumni-card">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Logan Waldorf</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">OF</div>
-          <div class="alumni-school">Southwest Tennessee CC (JUCO)</div>
-        </div>
+var HBCU = { 'SWAC':1, 'MEAC':1 };
 
-        <div class="alumni-card">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Landon Harris</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Missouri S&T (D2)</div>
-        </div>
+function getConf(name) {
+  if (!name) return '';
+  if (CM[name]) return CM[name];
+  // strip apostrophes for looser match
+  var stripped = name.replace(/['']/g, '');
+  if (CM[stripped]) return CM[stripped];
+  var lo = name.toLowerCase();
+  var keys = Object.keys(CM);
+  for (var i = 0; i < keys.length; i++) {
+    if (keys[i].toLowerCase() === lo) return CM[keys[i]];
+  }
+  return '';
+}
 
-        <!-- HIDDEN — load more reveals these -->
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Cash Myers</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Fort Scott CC (JUCO)</div>
-        </div>
+function isHBCUGame(g) {
+  return !!HBCU[getConf(g.away.name)] || !!HBCU[getConf(g.home.name)];
+}
 
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Bryce Fullen</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">1B</div>
-          <div class="alumni-school">Mineral Area CC (JUCO)</div>
-        </div>
+// ── Dates ─────────────────────────────────────────────────────────────────────
+function fmtDate(d) {
+  var m = d.getMonth() + 1;
+  var day = d.getDate();
+  return '' + d.getFullYear() + (m < 10 ? '0' + m : m) + (day < 10 ? '0' + day : day);
+}
+function dispDate(d) {
+  var days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  var mons = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  return days[d.getDay()] + ' ' + mons[d.getMonth()] + ' ' + d.getDate();
+}
+function buildDateStrip() {
+  var strip = document.getElementById('dateStrip');
+  strip.innerHTML = '';
+  var today = new Date();
+  for (var i = -3; i <= 3; i++) {
+    (function(offset) {
+      var d = new Date(today);
+      d.setDate(today.getDate() + offset);
+      var key = fmtDate(d);
+      var btn = document.createElement('button');
+      btn.className = 'date-chip' + (key === selDate ? ' active' : '');
+      btn.textContent = offset === 0 ? 'TODAY' : dispDate(d);
+      btn.onclick = function() { selDate = key; scoresLoaded = false; buildDateStrip(); fetchScores(); };
+      strip.appendChild(btn);
+    })(i);
+  }
+}
 
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Henry Cole</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">INF / P</div>
-          <div class="alumni-school">MSU West Plains (JUCO)</div>
-        </div>
+// ── Fetch ─────────────────────────────────────────────────────────────────────
+var scoresLoaded = false;
 
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Jackson Whiddon</div>
-          <div class="alumni-class">Class of 2026</div>
-          <div class="alumni-pos">C</div>
-          <div class="alumni-school">Truman State University (D2)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Brady Cronkhite</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">C</div>
-          <div class="alumni-school">Kansas Wesleyan (D2)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Riley Williams</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">C</div>
-          <div class="alumni-school">Fort Scott CC (JUCO)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Brock Kempton</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">INF</div>
-          <div class="alumni-school">Park University (NAIA)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Michael Przybylski</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">INF / OF</div>
-          <div class="alumni-school">Rockhurst University (D2)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Cooper Burton</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">INF</div>
-          <div class="alumni-school">Baker University (NAIA)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Dylan Peuser</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Coffeyville CC (JUCO)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Nate Stallard</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Quincy University (D2)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Ryan Jackson</div>
-          <div class="alumni-class">Class of 2025</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Fort Scott CC (JUCO)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Alex Koelle</div>
-          <div class="alumni-class">Class of 2024</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Emporia State University (D2)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Nolan Haas</div>
-          <div class="alumni-class">Class of 2024</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Benedictine College (NAIA)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Paden Cole</div>
-          <div class="alumni-class">Class of 2024</div>
-          <div class="alumni-pos">C</div>
-          <div class="alumni-school">MSU West Plains (JUCO)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-juco">JUCO</span></div>
-          <div class="alumni-name">Carson Hilton</div>
-          <div class="alumni-class">Class of 2024</div>
-          <div class="alumni-pos">OF</div>
-          <div class="alumni-school">Neosho County CC (JUCO)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d2">D2</span></div>
-          <div class="alumni-name">Nate Herken</div>
-          <div class="alumni-class">Class of 2024</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Missouri Western State (D2)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Eddie White</div>
-          <div class="alumni-class">Class of 2022</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Southeast Missouri State (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Dayvin Johnson</div>
-          <div class="alumni-class">Class of 2020</div>
-          <div class="alumni-pos">OF</div>
-          <div class="alumni-school">Iowa Western CC → University of Nebraska (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Jay Long</div>
-          <div class="alumni-class">Class of 2019</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Johnson County CC → SE Louisiana (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Matt Ronnebaum</div>
-          <div class="alumni-class">Class of 2019</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Johnson County CC → Army (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Danny Trehey</div>
-          <div class="alumni-class">Class of 2019</div>
-          <div class="alumni-pos">P</div>
-          <div class="alumni-school">Johnson County CC → Florida Atlantic (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Jackson Galloway</div>
-          <div class="alumni-class">Class of 2018</div>
-          <div class="alumni-pos">OF</div>
-          <div class="alumni-school">Johnson County CC → Middle Tennessee State (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Brad Kincaid</div>
-          <div class="alumni-class">Class of 2016</div>
-          <div class="alumni-pos">INF / P</div>
-          <div class="alumni-school">Johnson County CC → McNeese State (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Thomas Williams</div>
-          <div class="alumni-class">Class of 2015</div>
-          <div class="alumni-pos">C</div>
-          <div class="alumni-school">United States Naval Academy (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Ty Herrenbruck</div>
-          <div class="alumni-class">Class of 2015</div>
-          <div class="alumni-pos">INF / OF</div>
-          <div class="alumni-school">Johnson County CC → New Mexico State (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Jackson Layton</div>
-          <div class="alumni-class">Class of 2015</div>
-          <div class="alumni-pos">OF / 1B</div>
-          <div class="alumni-school">SIU Edwardsville (D1)</div>
-        </div>
-
-        <div class="alumni-card alumni-hidden">
-          <div><span class="alumni-badge badge-d1">D1</span></div>
-          <div class="alumni-name">Adam Thies</div>
-          <div class="alumni-class">Class of 2014</div>
-          <div class="alumni-pos">INF</div>
-          <div class="alumni-school">Wichita State University (D1)</div>
-        </div>
-
-      </div><!-- /alumni-grid -->
-
-      <div class="load-more-wrap">
-        <button class="btn" id="loadMoreBtn" onclick="loadMore()" style="border: 2px solid var(--maroon); color: var(--maroon); background: transparent; border-radius: 2px;">Load More Alumni ↓</button>
-        <div class="load-more-count" id="alumniCount">Showing 8 of 36 players</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <p class="section-label">Get In Touch</p>
-      <h2 class="section-title">Ready to Be a <span class="gold">Cavalier?</span></h2>
-      <div class="contact-grid">
-        <div class="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" placeholder="John" />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Smith" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="john@email.com" />
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="(913) 555-0000" />
-          </div>
-          <div class="form-group">
-            <label>Reason for Contact</label>
-            <select>
-              <option value="">Select one...</option>
-              <option>Tryout Information</option>
-              <option>Recruiting Inquiry</option>
-              <option>General Question</option>
-              <option>Coaching Staff</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Tell us about your son — age, position, experience..."></textarea>
-          </div>
-          <button type="button" class="btn btn-gold" style="align-self:flex-start;">Send Message</button>
-        </div>
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <h4>Location</h4>
-              <p>Kansas City Metro Area<br>Johnson County, KS</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📅</div>
-            <div>
-              <h4>Tryouts</h4>
-              <p>Main tryouts held end of July annually.<br>Openings available year-round — reach out!</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">⚾</div>
-            <div>
-              <h4>Ages</h4>
-              <p>Youth through high school players.<br>All positions welcome.</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">🎓</div>
-            <div>
-              <h4>Recruiting</h4>
-              <p>100% college placement rate.<br>D1, D2, D3 & JUCO pathways available.</p>
-            </div>
-          </div>
-          <div style="margin-top:1rem; padding:1.5rem; background:rgba(201,151,44,0.07); border:1px solid rgba(201,151,44,0.25); border-radius:4px;">
-            <p style="font-family:var(--font-ui); font-size:0.85rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase;">Disclaimer</p>
-            <p style="font-size:0.82rem; color:var(--gray); margin-top:0.5rem; line-height:1.6;">Cavalier Baseball Club is a division of HC Baseball LLC and that it is in no way related to Johnson County Community College. I understand that all problems and disagreements will be taken up with HC Baseball LLC and not Johnson County Community College.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-logo">CAVALIER <span>BASEBALL</span> CLUB</div>
-        <div class="footer-links">
-          <a href="#about">About</a>
-          <a href="#recruiting">Recruiting</a>
-          <a href="#coaches">Coaches</a>
-          <a href="#alumni">Alumni</a>
-          <a href="#tryouts">Tryouts</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-      <div class="footer-copy">
-        © 2025 Cavalier Baseball Club · HC Baseball LLC. All Rights Reserved.
-        <div class="footer-disclaimer">Cavalier Baseball Club is a division of HC Baseball LLC and that it is in no way related to Johnson County Community College. I understand that all problems and disagreements will be taken up with HC Baseball LLC and not Johnson County Community College.</div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Nav scroll effect
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-      });
-    });
-
-    // Scroll-reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
+function fetchScores() {
+  // Only show loading spinner on first load — background refreshes update silently
+  if (!scoresLoaded) {
+    document.getElementById('main').innerHTML =
+      '<div class="loading"><div>LOADING SCORES</div><div class="lbar"></div></div>';
+  }
+  var url = 'https://site.api.espn.com/apis/site/v2/sports/baseball/college-baseball/scoreboard?limit=200' +
+            (selDate ? '&dates=' + selDate : '');
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      scoresLoaded = true;
+      var prevGames = allGames.slice();
+      allGames = [];
+      var events = data.events || [];
+      for (var i = 0; i < events.length; i++) {
+        var g = parseGame(events[i]);
+        if (g) allGames.push(g);
+      }
+      // If game count/status changed, full re-render; otherwise patch in place
+      var needsFullRender = prevGames.length !== allGames.length;
+      if (!needsFullRender) {
+        for (var pi = 0; pi < allGames.length; pi++) {
+          if (!prevGames[pi] || prevGames[pi].id !== allGames[pi].id ||
+              prevGames[pi].gs !== allGames[pi].gs) {
+            needsFullRender = true; break;
+          }
         }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.pillar, .stat-card, .coach-card, .step').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
+      }
+      if (needsFullRender) {
+        renderGames();
+      } else {
+        patchLiveCards();
+      }
+      buildTicker();
+      var t = new Date();
+      var h = t.getHours(); var mn = t.getMinutes();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      document.getElementById('lastUpdated').textContent =
+        'UPD ' + (h < 10 ? '0'+h : h) + ':' + (mn < 10 ? '0'+mn : mn) + ' ' + ampm;
+    })
+    .catch(function(err) {
+      console.error(err);
+      document.getElementById('main').innerHTML =
+        '<div class="empty"><span class="icon">&#9918;</span>' +
+        '<p>UNABLE TO LOAD SCORES</p><p style="margin-top:8px;font-size:9px">CHECK CONNECTION</p></div>';
     });
+}
 
-    // Load More Alumni
-    const BATCH = 8;
-    let shown = 8;
-    const total = document.querySelectorAll('.alumni-card').length;
+function parseGame(ev) {
+  try {
+    var comp = (ev.competitions || [])[0] || {};
+    var comps = comp.competitors || [];
+    var away = null, home = null;
+    for (var i = 0; i < comps.length; i++) {
+      if (comps[i].homeAway === 'away') away = comps[i];
+      if (comps[i].homeAway === 'home') home = comps[i];
+    }
+    if (!away) away = comps[0] || {};
+    if (!home) home = comps[1] || {};
 
-    function updateCount() {
-      const countEl = document.getElementById('alumniCount');
-      const btn = document.getElementById('loadMoreBtn');
-      countEl.textContent = `Showing ${shown} of ${total} players`;
-      if (shown >= total) {
-        btn.textContent = 'All Players Shown ✓';
-        btn.disabled = true;
-        btn.style.opacity = '0.5';
-        btn.style.cursor = 'default';
+    var st = (comp.status || {});
+    var stName = ((st.type || {}).name) || 'STATUS_SCHEDULED';
+    var gs = 'scheduled';
+    if (stName === 'STATUS_IN_PROGRESS') gs = 'live';
+    else if (stName === 'STATUS_FINAL' || stName === 'STATUS_FINAL_ATS') gs = 'final';
+
+    var aScore = parseInt(away.score) || 0;
+    var hScore = parseInt(home.score) || 0;
+
+    var aLS = away.linescores || [];
+    var hLS = home.linescores || [];
+    var ls = [];
+    for (var j = 0; j < aLS.length; j++) {
+      ls.push({
+        inn: j + 1,
+        a: (aLS[j].value !== undefined && aLS[j].value !== null) ? aLS[j].value : '-',
+        h: (hLS[j] && hLS[j].value !== undefined && hLS[j].value !== null) ? hLS[j].value : '-'
+      });
+    }
+
+    var sit = comp.situation || {};
+    var aRec = ((away.records || [])[0] || {}).summary || '';
+    var hRec = ((home.records || [])[0] || {}).summary || '';
+    var aRnkRaw = (away.curatedRank || {}).current;
+    var hRnkRaw = (home.curatedRank || {}).current;
+
+    var d = new Date(ev.date);
+    var hr = d.getHours(); var min = d.getMinutes();
+    var ap = hr >= 12 ? 'PM' : 'AM'; hr = hr % 12 || 12;
+    var timeStr = hr + ':' + (min < 10 ? '0'+min : min) + ' ' + ap;
+
+    var pitchers = {};
+    var allComps = comp.competitors || [];
+    for (var ci = 0; ci < allComps.length; ci++) {
+      var ldrs = allComps[ci].leaders || [];
+      for (var li = 0; li < ldrs.length; li++) {
+        var ldr = ldrs[li];
+        if (ldr.name === 'wins' && ldr.leaders && ldr.leaders[0]) pitchers.winner = ldr.leaders[0];
+        if (ldr.name === 'losses' && ldr.leaders && ldr.leaders[0]) pitchers.loser = ldr.leaders[0];
       }
     }
 
-    function loadMore() {
-      const hidden = document.querySelectorAll('.alumni-card.alumni-hidden');
-      let revealed = 0;
-      hidden.forEach(card => {
-        if (revealed < BATCH) {
-          card.classList.remove('alumni-hidden');
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, revealed * 60);
-          revealed++;
-          shown++;
-        }
-      });
-      updateCount();
+    var aTeam = away.team || {};
+    var hTeam = home.team || {};
+
+    return {
+      id: ev.id,
+      gs: gs,
+      period: st.period || 1,
+      sit: sit,
+      away: {
+        name: aTeam.shortDisplayName || aTeam.name || 'Away',
+        abbr: aTeam.abbreviation || '??',
+        color: aTeam.color ? '#' + aTeam.color : '#334455',
+        score: aScore,
+        rec: aRec,
+        rank: (aRnkRaw && aRnkRaw <= 25) ? '#' + aRnkRaw : '',
+        ls: aLS
+      },
+      home: {
+        name: hTeam.shortDisplayName || hTeam.name || 'Home',
+        abbr: hTeam.abbreviation || '??',
+        color: hTeam.color ? '#' + hTeam.color : '#334455',
+        score: hScore,
+        rec: hRec,
+        rank: (hRnkRaw && hRnkRaw <= 25) ? '#' + hRnkRaw : '',
+        ls: hLS
+      },
+      ls: ls,
+      time: timeStr,
+      venue: (comp.venue || {}).fullName || '',
+      pitchers: pitchers
+    };
+  } catch(e) {
+    console.error('parseGame error', e, ev);
+    return null;
+  }
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function renderGames() {
+  var main = document.getElementById('main');
+  var games = allGames.slice();
+
+  if (statusFilt !== 'all') {
+    games = games.filter(function(g) { return g.gs === statusFilt; });
+  }
+  if (confFilt === 'hbcu') {
+    games = games.filter(isHBCUGame);
+  } else if (confFilt !== 'all') {
+    games = games.filter(function(g) {
+      return getConf(g.away.name) === confFilt || getConf(g.home.name) === confFilt;
+    });
+  }
+  if (searchQ) {
+    var q = searchQ.toLowerCase();
+    games = games.filter(function(g) {
+      return g.away.name.toLowerCase().indexOf(q) >= 0 ||
+             g.home.name.toLowerCase().indexOf(q) >= 0;
+    });
+  }
+
+  if (!games.length) {
+    main.innerHTML = '<div class="empty"><span class="icon">&#9918;</span><p>NO GAMES FOUND</p></div>';
+    return;
+  }
+
+  var live = games.filter(function(g){ return g.gs === 'live'; });
+  var sched = games.filter(function(g){ return g.gs === 'scheduled'; });
+  var fin = games.filter(function(g){ return g.gs === 'final'; });
+
+  var html = '';
+  if (live.length) {
+    html += '<div class="sec-hdr"><span class="sec-title">LIVE NOW</span><span class="sec-cnt">' + live.length + '</span></div>';
+    html += '<div class="grid">' + live.map(buildCard).join('') + '</div>';
+  }
+  if (sched.length) {
+    html += '<div class="sec-hdr"><span class="sec-title">UPCOMING</span><span class="sec-cnt">' + sched.length + '</span></div>';
+    html += '<div class="grid">' + sched.map(buildCard).join('') + '</div>';
+  }
+  if (fin.length) {
+    html += '<div class="sec-hdr"><span class="sec-title">FINAL</span><span class="sec-cnt">' + fin.length + '</span></div>';
+    html += '<div class="grid">' + fin.map(buildCard).join('') + '</div>';
+  }
+  main.innerHTML = html;
+}
+
+function initials(name) {
+  if (!name) return '??';
+  var parts = name.trim().split(' ');
+  return parts[parts.length - 1].substring(0, 2).toUpperCase();
+}
+
+function buildCard(g) {
+  var live = g.gs === 'live';
+  var fin  = g.gs === 'final';
+  var sched = g.gs === 'scheduled';
+  var aW = g.away.score > g.home.score;
+  var hW = g.home.score > g.away.score;
+
+  // Status label
+  var sLabel = '';
+  if (live)  sLabel = '<span class="gstatus slive">&#9679; LIVE &mdash; INN ' + g.period + '</span>';
+  else if (fin) sLabel = '<span class="gstatus sfinal">FINAL</span>';
+  else sLabel = '<span class="gstatus ssched">' + g.time + '</span>';
+
+  // Scores
+  var aSc = sched ? '' : '<span class="tscorebig ' + (aW ? 'win' : 'lose') + '">' + g.away.score + '</span>';
+  var hSc = sched ? '' : '<span class="tscorebig ' + (hW ? 'win' : 'lose') + '">' + g.home.score + '</span>';
+
+  // HBCU badges
+  var aBadge = HBCU[getConf(g.away.name)] ? '<span class="hbadge">HBCU</span>' : '';
+  var hBadge = HBCU[getConf(g.home.name)] ? '<span class="hbadge">HBCU</span>' : '';
+
+  // Linescore
+  var lineHtml = '';
+  if (!sched && g.ls.length) {
+    var heads = '';
+    var aRow = '';
+    var hRow = '';
+    for (var i = 0; i < g.ls.length; i++) {
+      heads += '<th>' + g.ls[i].inn + '</th>';
+      aRow  += '<td>' + g.ls[i].a + '</td>';
+      hRow  += '<td>' + g.ls[i].h + '</td>';
+    }
+    var aT = 0, hT = 0;
+    for (var j = 0; j < g.away.ls.length; j++) aT += (g.away.ls[j].value || 0);
+    for (var k = 0; k < g.home.ls.length; k++) hT += (g.home.ls[k].value || 0);
+    lineHtml = '<div class="linescore"><table>' +
+      '<tr><th class="lbl"></th>' + heads + '<th class="tot">R</th></tr>' +
+      '<tr><td class="lbl">' + g.away.abbr + '</td>' + aRow + '<td class="tot">' + aT + '</td></tr>' +
+      '<tr><td class="lbl">' + g.home.abbr + '</td>' + hRow + '<td class="tot">' + hT + '</td></tr>' +
+      '</table></div>';
+  }
+
+  // Footer
+  var footHtml = '';
+  if (live) {
+    var s = g.sit;
+    var hasSit = s && (s.onFirst !== undefined || s.onSecond !== undefined ||
+                       s.onThird !== undefined || s.balls !== undefined ||
+                       s.strikes !== undefined || s.outs !== undefined);
+    if (!hasSit) {
+      footHtml = '<div class="gfoot"><span style="color:var(--muted);font-size:9px;letter-spacing:1px">Live data not yet available</span></div>';
+    } else {
+      var batter = (s.batter && s.batter.athlete) ? (s.batter.athlete.shortName || '') : '';
+      footHtml = '<div class="gfoot">' +
+        '<div class="bases-row">' +
+          '<div class="diamond">' +
+            '<div class="base bhome"></div>' +
+            '<div class="base bfirst' + (s.onFirst  ? ' on' : '') + '"></div>' +
+            '<div class="base bsecond' + (s.onSecond ? ' on' : '') + '"></div>' +
+            '<div class="base bthird' + (s.onThird  ? ' on' : '') + '"></div>' +
+          '</div>' +
+          '<div class="outs">' +
+            '<div class="odot' + ((s.outs||0)>=1?' on':'') + '"></div>' +
+            '<div class="odot' + ((s.outs||0)>=2?' on':'') + '"></div>' +
+          '</div>' +
+          '<span class="live-count" style="font-size:9px;color:var(--muted)">' + (s.balls||0) + '-' + (s.strikes||0) + '</span>' +
+        '</div>' +
+        '<span class="live-batter">' + batter + '</span>' +
+      '</div>';
+    }
+  } else if (fin && (g.pitchers.winner || g.pitchers.loser)) {
+    var wn = (g.pitchers.winner && g.pitchers.winner.athlete) ? (g.pitchers.winner.athlete.shortName||'&mdash;') : '&mdash;';
+    var ln = (g.pitchers.loser  && g.pitchers.loser.athlete)  ? (g.pitchers.loser.athlete.shortName||'&mdash;')  : '&mdash;';
+    footHtml = '<div class="gfoot"><span><span class="wpitch">W</span> ' + wn + '</span><span><span class="lpitch">L</span> ' + ln + '</span></div>';
+  } else if (sched && g.venue) {
+    footHtml = '<div class="gfoot"><span>' + g.venue + '</span></div>';
+  }
+
+  // Links — ESPN + StatBroadcast + Sidearm
+  var gcUrl  = 'https://www.espn.com/college-baseball/game/_/gameId/' + g.id;
+  // Find StatBroadcast GID: prefer home team (the hosting school)
+  var sbGid  = SB[g.home.name] || SB[g.away.name] || null;
+  var sbUrl  = sbGid ? 'https://www.statbroadcast.com/events/statmonitr.php?gid=' + sbGid : null;
+  // Find Sidearm domain: prefer home team
+  var sdDom  = SD[g.home.name] || SD[g.away.name] || null;
+  var sdUrl  = sdDom ? 'https://' + sdDom + '/sidearmstats/baseball/summary' : null;
+
+  var lHtml = '<div class="glinks">';
+  if (live) lHtml += '<a class="glink pri" href="' + gcUrl + '" target="_blank" rel="noopener">&#9654; GAMECAST</a>';
+  if (!sched) lHtml += '<button class="glink bs-btn" data-gameid="' + g.id + '">&#9776; BOX SCORE</button>';
+  lHtml += '<a class="glink" href="' + gcUrl + '" target="_blank" rel="noopener">&#8599; ESPN</a>';
+  if (sbUrl) lHtml += '<a class="glink" href="' + sbUrl + '" target="_blank" rel="noopener" title="StatBroadcast live stats">&#128200; STATBCAST</a>';
+  if (sdUrl) lHtml += '<a class="glink" href="' + sdUrl + '" target="_blank" rel="noopener" title="Sidearm live stats">&#128202; SIDEARM</a>';
+  lHtml += '</div>';
+
+  var ac = g.away.color; var hc = g.home.color;
+
+  return '<div class="card ' + g.gs + '" data-gameid="' + g.id + '">' +
+    '<div class="gmeta">' + sLabel +
+    '<span class="recinfo">' + (g.away.rec && g.home.rec ? g.away.rec + ' / ' + g.home.rec : '') + '</span></div>' +
+    '<div class="teams">' +
+      '<div class="trow">' +
+        '<span class="trank">' + g.away.rank + '</span>' +
+        '<div class="tlogo" style="background:' + ac + '20;color:' + ac + ';border-color:' + ac + '40">' + initials(g.away.name) + '</div>' +
+        '<div class="tname">' + g.away.name + aBadge + '</div>' +
+        aSc +
+      '</div>' +
+      '<div class="trow">' +
+        '<span class="trank">' + g.home.rank + '</span>' +
+        '<div class="tlogo" style="background:' + hc + '20;color:' + hc + ';border-color:' + hc + '40">' + initials(g.home.name) + '</div>' +
+        '<div class="tname">' + g.home.name + hBadge + '</div>' +
+        hSc +
+      '</div>' +
+    '</div>' +
+    lineHtml + footHtml + lHtml +
+  '</div>';
+}
+
+// ── Patch live card situation data in-place (no full re-render) ──────────────
+function patchLiveCards() {
+  for (var pi = 0; pi < allGames.length; pi++) {
+    var g = allGames[pi];
+    var card = document.querySelector('.card[data-gameid="' + g.id + '"]');
+    if (!card) continue;
+
+    // Update score
+    var trows = card.querySelectorAll('.trow');
+    if (trows[0]) {
+      var aSc = trows[0].querySelector('.tscorebig');
+      if (aSc) { aSc.textContent = g.away.score; aSc.className = 'tscorebig ' + (g.away.score > g.home.score ? 'win' : 'lose'); }
+    }
+    if (trows[1]) {
+      var hSc = trows[1].querySelector('.tscorebig');
+      if (hSc) { hSc.textContent = g.home.score; hSc.className = 'tscorebig ' + (g.home.score > g.away.score ? 'win' : 'lose'); }
     }
 
-    updateCount();
+    if (g.gs !== 'live') continue;
+    var s = g.sit || {};
+    var hasSit = s && (s.onFirst !== undefined || s.onSecond !== undefined ||
+                       s.onThird !== undefined || s.balls !== undefined ||
+                       s.strikes !== undefined || s.outs !== undefined);
+    // If situation data just arrived for a card that showed the placeholder, force a full re-render
+    var placeholder = card.querySelector('.gfoot span[style*="not yet"]');
+    if (placeholder && hasSit) { renderGames(); return; }
+    if (!hasSit) continue;
 
-    // Form submit (placeholder)
-    document.querySelector('.btn-gold[type="button"]').addEventListener('click', function() {
-      this.textContent = '✓ Message Sent!';
-      this.style.background = '#2ecc71';
-      this.style.borderColor = '#2ecc71';
-      setTimeout(() => {
-        this.textContent = 'Send Message';
-        this.style.background = '';
-        this.style.borderColor = '';
-      }, 3000);
+    // Update status label
+    var statusEl = card.querySelector('.gstatus');
+    if (statusEl) statusEl.innerHTML = '&#9679; LIVE &mdash; INN ' + (g.period || '');
+
+    // Update bases
+    var bases = card.querySelectorAll('.base');
+    for (var bi = 0; bi < bases.length; bi++) {
+      var b = bases[bi];
+      if (b.classList.contains('bfirst'))  { b.className = 'base bfirst'  + (s.onFirst  ? ' on' : ''); }
+      if (b.classList.contains('bsecond')) { b.className = 'base bsecond' + (s.onSecond ? ' on' : ''); }
+      if (b.classList.contains('bthird'))  { b.className = 'base bthird'  + (s.onThird  ? ' on' : ''); }
+    }
+
+    // Update outs
+    var odots = card.querySelectorAll('.odot');
+    if (odots[0]) odots[0].className = 'odot' + ((s.outs||0) >= 1 ? ' on' : '');
+    if (odots[1]) odots[1].className = 'odot' + ((s.outs||0) >= 2 ? ' on' : '');
+
+    // Update count
+    var countEl = card.querySelector('.live-count');
+    if (countEl) countEl.textContent = (s.balls||0) + '-' + (s.strikes||0);
+
+    // Update batter name
+    var batterEl = card.querySelector('.live-batter');
+    if (batterEl) {
+      batterEl.textContent = (s.batter && s.batter.athlete) ? (s.batter.athlete.shortName || '') : '';
+    }
+
+    // Update linescore rows
+    if (g.ls && g.ls.length) {
+      var lsRows = card.querySelectorAll('.linescore tbody tr');
+      if (lsRows[0] && lsRows[1]) {
+        var aCells = lsRows[0].querySelectorAll('td:not(.lbl):not(.tot)');
+        var hCells = lsRows[1].querySelectorAll('td:not(.lbl):not(.tot)');
+        for (var li = 0; li < g.ls.length && li < aCells.length; li++) {
+          aCells[li].textContent = g.ls[li].a;
+          if (hCells[li]) hCells[li].textContent = g.ls[li].h;
+        }
+        var aTot = lsRows[0].querySelector('.tot');
+        var hTot = lsRows[1].querySelector('.tot');
+        if (aTot) aTot.textContent = g.away.score;
+        if (hTot) hTot.textContent = g.home.score;
+      }
+    }
+  }
+}
+
+function buildTicker() {
+  var live = allGames.filter(function(g){ return g.gs === 'live'; });
+  var src  = live.length ? live : allGames.slice(0, 10);
+  if (!src.length) return;
+  var dbl = src.concat(src);
+  var html = dbl.map(function(g) {
+    return '<span class="ticker-item ticker-clickable" data-gameid="' + g.id + '" title="Click to find game">' +
+      g.away.abbr + ' <span class="tscore">' + g.away.score + '</span>' +
+      ' &mdash; ' +
+      g.home.abbr + ' <span class="tscore">' + g.home.score + '</span>' +
+      (g.gs === 'live'
+        ? ' <span class="tlive">&#9679; ' + g.period + '</span>'
+        : ' <span>' + g.gs.toUpperCase() + '</span>') +
+      '&nbsp;&nbsp;&nbsp;</span>';
+  }).join('');
+  document.getElementById('tickerInner').innerHTML = html;
+}
+
+// ── Stats Leaders Panel ──────────────────────────────────────────────────────
+var slOpen     = false;
+var slScope    = 'overall';  // 'overall' | 'conf'
+var slConfFilt = 'all';
+
+var CAT_LABELS = { AVG:'BATTING AVG', HR:'HOME RUNS', RBI:'RBI', ERA:'ERA', K:'STRIKEOUTS', SV:'SAVES',
+                   H:'HITS', SB:'STOLEN BASES', OBP:'ON-BASE %', SLG:'SLUGGING' };
+var PITCHER_CATS = { ERA:1, K:1, W:1, SV:1, IP:1 };
+
+function renderSlGrid() {
+  var grid = document.getElementById('slGrid');
+  if (!grid) return;
+  if (!statsBuilt) {
+    grid.innerHTML = '<div style="font-size:10px;color:var(--muted);letter-spacing:2px;padding:8px 0">LOADING STATS&hellip;</div>';
+    return;
+  }
+
+  // Pick data source
+  var src = slScope === 'overall' ? overallItems : confItems;
+
+  // Apply conference filter in conf scope
+  if (slScope === 'conf' && slConfFilt !== 'all') {
+    src = src.filter(function(d) { return d.conf === slConfFilt; });
+  }
+
+  // Group by category (and conf if applicable)
+  var groups = {};
+  for (var i = 0; i < src.length; i++) {
+    var d = src[i];
+    var key = slScope === 'conf' ? d.conf + '|' + d.cat : d.cat;
+    if (!groups[key]) groups[key] = { cat:d.cat, conf:d.conf||'', rows:[] };
+    groups[key].rows.push(d);
+  }
+
+  // Sort keys: overall → by cat order; conf → by conf alpha then cat
+  var CAT_ORDER = ['AVG','HR','RBI','ERA','K','SV','H','SB','OBP','SLG','W'];
+  var keys = Object.keys(groups).sort(function(a,b) {
+    var ga = groups[a]; var gb = groups[b];
+    if (slScope === 'conf') {
+      if (ga.conf < gb.conf) return -1;
+      if (ga.conf > gb.conf) return 1;
+    }
+    return CAT_ORDER.indexOf(ga.cat) - CAT_ORDER.indexOf(gb.cat);
+  });
+
+  if (!keys.length) {
+    grid.innerHTML = '<div style="font-size:10px;color:var(--muted);letter-spacing:2px;padding:8px 0">NO DATA FOR SELECTED FILTERS</div>';
+    return;
+  }
+
+  var html = '';
+  for (var ki = 0; ki < keys.length; ki++) {
+    var grp = groups[keys[ki]];
+    var isPitcher = !!PITCHER_CATS[grp.cat];
+    var catLabel  = CAT_LABELS[grp.cat] || grp.cat;
+    html += '<div class="sl-card">';
+    html += '<div class="sl-card-hdr"><span>' + catLabel + '</span>';
+    if (grp.conf) html += '<span class="sl-card-conf">' + grp.conf + '</span>';
+    html += '</div>';
+    for (var ri = 0; ri < grp.rows.length; ri++) {
+      var r = grp.rows[ri];
+      html += '<div class="sl-row">' +
+        '<span class="sl-rank">' + (ri+1) + '</span>' +
+        '<div style="flex:1;min-width:0">' +
+          '<div class="sl-player">' + r.player + '</div>' +
+          '<div class="sl-team">' + r.team + '</div>' +
+        '</div>' +
+        '<span class="sl-val' + (isPitcher?' pitcher':'') + '">' + r.val + '</span>' +
+      '</div>';
+    }
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function openSlPanel() {
+  if (stndOpen) closeStndPanel();
+  slOpen = true;
+  document.getElementById('slPanel').classList.add('open');
+  document.getElementById('slBtn').classList.add('open');
+  renderSlGrid();
+}
+function closeSlPanel() {
+  slOpen = false;
+  document.getElementById('slPanel').classList.remove('open');
+  document.getElementById('slBtn').classList.remove('open');
+}
+
+document.getElementById('slBtn').addEventListener('click', function() {
+  slOpen ? closeSlPanel() : openSlPanel();
+});
+document.getElementById('slClose').addEventListener('click', closeSlPanel);
+
+// Scope tabs inside panel
+var slTabs = document.querySelectorAll('.sl-stab');
+for (var si = 0; si < slTabs.length; si++) {
+  (function(tab) {
+    tab.addEventListener('click', function() {
+      for (var xi = 0; xi < slTabs.length; xi++) slTabs[xi].classList.remove('active');
+      tab.classList.add('active');
+      slScope = tab.getAttribute('data-sl-scope');
+      var confSel = document.getElementById('slConfSel');
+      confSel.style.display = slScope === 'conf' ? '' : 'none';
+      renderSlGrid();
     });
-  </script>
+  })(slTabs[si]);
+}
+
+// Conference filter inside panel
+document.getElementById('slConfSel').addEventListener('change', function() {
+  slConfFilt = this.value;
+  renderSlGrid();
+});
+
+// Close sl panel on outside click
+document.addEventListener('click', function(e) {
+  if (!slOpen) return;
+  var wrap = document.getElementById('slWrap');
+  var btn  = document.getElementById('slBtn');
+  if (!wrap.contains(e.target) && !btn.contains(e.target)) closeSlPanel();
+});
+
+// ── Standings Panel ───────────────────────────────────────────────────────────
+var stndOpen = false;
+var stndConf = 'SEC';
+var stndCache = {};  // keyed by conf string
+
+// ESPN group IDs for college baseball conferences
+var CONF_ESPN_ID = {
+  'SEC':       '8',
+  'ACC':       '1',
+  'Big 12':    '4',
+  'Big Ten':   '5',
+  'American':  '151',
+  'Sun Belt':  '37',
+  'C-USA':     '11',
+  'Big West':  '40',
+  'MWC':       '44',
+  'WCC':       '26',
+  'MVC':       '18',
+  'SoCon':     '29',
+  'Southland': '31',
+  'OVC':       '22',
+  'Patriot':   '57',
+  'NEC':       '19',
+  'MAC':       '14',
+  'WAC':       '16',
+  'Pac-12':    '9',
+  'SWAC':      '32',
+  'MEAC':      '24'
+};
+
+function openStndPanel() {
+  // close stats panel if open
+  if (slOpen) closeSlPanel();
+  stndOpen = true;
+  document.getElementById('stndPanel').classList.add('open');
+  document.getElementById('stndBtn').classList.add('open');
+  fetchStandings(stndConf);
+}
+function closeStndPanel() {
+  stndOpen = false;
+  document.getElementById('stndPanel').classList.remove('open');
+  document.getElementById('stndBtn').classList.remove('open');
+}
+
+function fetchStandings(conf) {
+  var body = document.getElementById('stndBody');
+  if (stndCache[conf]) { renderStandings(stndCache[conf]); return; }
+  body.innerHTML = '<div class="stnd-loading">LOADING STANDINGS&hellip;</div>';
+  var espnId = CONF_ESPN_ID[conf];
+  if (!espnId) { body.innerHTML = '<div class="stnd-loading">CONFERENCE NOT AVAILABLE</div>'; return; }
+  var url = 'https://site.api.espn.com/apis/v2/sports/baseball/college-baseball/standings?group=' + espnId;
+  var proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
+  function tryUrl(u, fallback) {
+    fetch(u).then(function(r){ return r.json(); }).then(function(data) {
+      var groups = parseStandings(data, conf);
+      if (!groups || groups.length === 0) throw new Error('empty');
+      stndCache[conf] = groups;
+      renderStandings(groups);
+    }).catch(function() {
+      if (fallback) { tryUrl(fallback, null); }
+      else { body.innerHTML = '<div class="stnd-loading">STANDINGS UNAVAILABLE</div>'; }
+    });
+  }
+  tryUrl(url, proxy);
+}
+
+function parseStandings(data, conf) {
+  var groups = [];
+  // ESPN standings can return children (divisions) or flat entries
+  var children = (data.children && data.children.length) ? data.children : null;
+  if (children) {
+    // Multi-division conference
+    for (var ci = 0; ci < children.length; ci++) {
+      var child = children[ci];
+      var divName = child.name || child.abbreviation || ('Division ' + (ci+1));
+      var rows = extractRows(child);
+      if (rows.length) groups.push({ div: divName, rows: rows });
+    }
+  } else {
+    // Single-division conference
+    var rows = extractRows(data);
+    if (rows.length) groups.push({ div: conf, rows: rows });
+  }
+  return groups;
+}
+
+function extractRows(node) {
+  var entries = (node.standings && node.standings.entries) ? node.standings.entries : [];
+  var rows = [];
+  for (var i = 0; i < entries.length; i++) {
+    var e = entries[i];
+    var team = (e.team && e.team.shortDisplayName) ? e.team.shortDisplayName
+             : (e.team && e.team.displayName) ? e.team.displayName : '?';
+    var logo = (e.team && e.team.logos && e.team.logos[0]) ? e.team.logos[0].href : '';
+    // Pull stats from stats array
+    var stats = e.stats || [];
+    function getStat(abbr) {
+      for (var s = 0; s < stats.length; s++) {
+        if (stats[s].abbreviation === abbr || stats[s].name === abbr) return stats[s].displayValue || stats[s].value || '0';
+      }
+      return '–';
+    }
+    var cw = getStat('wins');         // conf wins
+    var cl = getStat('losses');       // conf losses
+    var cpct = getStat('winPercent'); // conf pct
+    var ow = getStat('overall');      // try overall
+    // ESPN uses different abbreviations per sport; try fallbacks
+    if (cpct === '–') cpct = getStat('pct');
+    if (ow === '–') {
+      // build from gamesBehind or just show conf record
+      ow = getStat('playoffSeed') === '–' ? '' : '';
+    }
+    // Get overall record string
+    var ovr = getStat('overall');
+    if (ovr === '–') ovr = getStat('OVR');
+    rows.push({ team: team, logo: logo, cw: cw, cl: cl, cpct: cpct, ovr: ovr });
+  }
+  return rows;
+}
+
+function renderStandings(groups) {
+  if (!stndOpen) return;
+  var body = document.getElementById('stndBody');
+  if (!groups || groups.length === 0) {
+    body.innerHTML = '<div class="stnd-loading">NO STANDINGS DATA</div>';
+    return;
+  }
+  var html = '<div class="sl-grid">';
+  for (var gi = 0; gi < groups.length; gi++) {
+    var g = groups[gi];
+    html += '<div class="sl-card">';
+    html += '<div class="sl-card-hdr"><span>' + g.div.toUpperCase() + '</span>'
+          + '<span class="sl-card-conf" style="opacity:.7;font-size:8px;letter-spacing:1px">REC &bull; PCT</span>'
+          + '</div>';
+    for (var ri = 0; ri < g.rows.length; ri++) {
+      var r = g.rows[ri];
+      var confRec = r.cw + '-' + r.cl;
+      var pct = (r.cpct && r.cpct !== '–') ? r.cpct : '';
+      var ovr = (r.ovr  && r.ovr  !== '–') ? r.ovr  : '';
+      html += '<div class="sl-row">'
+            + '<span class="sl-rank">' + (ri + 1) + '</span>'
+            + '<div style="flex:1;min-width:0">'
+            +   '<div class="sl-player">' + r.team + '</div>'
+            +   '<div class="sl-team">' + confRec + (ovr ? '&nbsp;&nbsp;|&nbsp;&nbsp;' + ovr + ' OVR' : '') + '</div>'
+            + '</div>'
+            + '<span class="sl-val" style="font-size:16px;min-width:40px">' + pct + '</span>'
+            + '</div>';
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+  body.innerHTML = html;
+}
+document.getElementById('stndBtn').addEventListener('click', function() {
+  stndOpen ? closeStndPanel() : openStndPanel();
+});
+document.getElementById('stndClose').addEventListener('click', closeStndPanel);
+
+document.getElementById('stndConfSel').addEventListener('change', function() {
+  stndConf = this.value;
+  if (stndOpen) fetchStandings(stndConf);
+});
+
+// Close standings panel on outside click
+document.addEventListener('click', function(e) {
+  if (!stndOpen) return;
+  var wrap = document.getElementById('stndWrap');
+  var btn  = document.getElementById('stndBtn');
+  if (!wrap.contains(e.target) && !btn.contains(e.target)) closeStndPanel();
+});
+
+// ── Wire up controls ──────────────────────────────────────────────────────────
+var fbtns = document.querySelectorAll('.fbtn');
+for (var bi = 0; bi < fbtns.length; bi++) {
+  (function(btn) {
+    btn.addEventListener('click', function() {
+      for (var xi = 0; xi < fbtns.length; xi++) fbtns[xi].classList.remove('active');
+      btn.classList.add('active');
+      statusFilt = btn.getAttribute('data-filter');
+      renderGames();
+    });
+  })(fbtns[bi]);
+}
+
+document.getElementById('confSelect').addEventListener('change', function() {
+  confFilt = this.value;
+  renderGames();
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  searchQ = this.value;
+  renderGames();
+});
+
+// ── Ticker swipe/scroll speed + click-to-filter ─────────────────────────────
+(function() {
+  function initTickerInteraction(wrapperId, innerId) {
+    var wrap  = document.getElementById(wrapperId) || document.querySelector('.' + wrapperId);
+    var inner = document.getElementById(innerId);
+    if (!wrap || !inner) return;
+
+    // Wheel: speed up / slow down animation duration
+    wrap.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      var style     = window.getComputedStyle(inner);
+      var duration  = parseFloat(style.animationDuration) || 40;
+      // Scroll down = faster (shorter duration), scroll up = slower
+      var delta = e.deltaY > 0 ? -4 : 4;
+      duration = Math.max(8, Math.min(120, duration + delta));
+      inner.style.animationDuration = duration + 's';
+    }, { passive: false });
+
+    // Touch swipe: drag to scrub speed
+    var touchStartX = null;
+    wrap.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      inner.classList.add('paused');
+    }, { passive: true });
+    wrap.addEventListener('touchmove', function(e) {
+      if (touchStartX === null) return;
+      var dx = e.touches[0].clientX - touchStartX;
+      var style    = window.getComputedStyle(inner);
+      var duration = parseFloat(style.animationDuration) || 40;
+      duration = Math.max(8, Math.min(120, duration - dx * 0.1));
+      inner.style.animationDuration = duration + 's';
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    wrap.addEventListener('touchend', function() {
+      touchStartX = null;
+      inner.classList.remove('paused');
+    }, { passive: true });
+  }
+
+  // Init both tickers after DOM ready
+  initTickerInteraction('tickerWrap', 'tickerInner');
+  initTickerInteraction('statsTickerWrap', 'statsTickerInner');
+})();
+
+// Ticker click-to-filter: clicking a score scrolls to and highlights that game
+document.getElementById('tickerInner').addEventListener('click', function(e) {
+  var item = e.target.closest('[data-gameid]');
+  if (!item) return;
+  var gid  = item.getAttribute('data-gameid');
+  var card = document.querySelector('.card[data-gameid="' + gid + '"]');
+  if (!card) {
+    // Game may be filtered out — reset search filter and try again
+    searchQ = '';
+    document.getElementById('searchInput').value = '';
+    statusFilt = 'all';
+    for (var xi = 0; xi < fbtns.length; xi++) {
+      fbtns[xi].classList.toggle('active', fbtns[xi].getAttribute('data-filter') === 'all');
+    }
+    confFilt = 'all';
+    document.getElementById('confSelect').value = 'all';
+    renderGames();
+    card = document.querySelector('.card[data-gameid="' + gid + '"]');
+  }
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.style.outline = '2px solid var(--accent)';
+    card.style.outlineOffset = '2px';
+    setTimeout(function() { card.style.outline = ''; card.style.outlineOffset = ''; }, 2000);
+  }
+});
+
+// Logo click → reset all filters and re-render from existing data
+document.querySelector('.logo').addEventListener('click', function() {
+  searchQ    = '';
+  statusFilt = 'all';
+  confFilt   = 'all';
+  selDate    = fmtDate(new Date());
+  document.getElementById('searchInput').value = '';
+  document.getElementById('confSelect').value  = 'all';
+  for (var xi = 0; xi < fbtns.length; xi++) {
+    fbtns[xi].classList.toggle('active', fbtns[xi].getAttribute('data-filter') === 'all');
+  }
+  buildDateStrip();
+  // If we already have today's data just re-render — no fetch needed, no spinner
+  if (scoresLoaded && allGames.length) {
+    renderGames();
+  } else {
+    scoresLoaded = false;
+    fetchScores();
+  }
+});
+
+// ── Stats ticker ──────────────────────────────────────────────────────────────
+// Seed data from d1sportsnet.com — through March 05, 2026.
+// Attempts a live refresh from d1sportsnet.com via CORS proxy on load.
+
+var statsScope   = 'overall';
+var overallItems = [];
+var confItems    = [];
+var statsBuilt   = false;
+
+// ── Seed data: top D1 leaders per category ────────────────────────────────────
+// Source: d1sportsnet.com — through March 05, 2026
+var SEED_OVERALL = [
+  // Batting Average (through Mar 5)
+  {cat:'AVG', player:'D. Williams',     team:'Miami (FL)',        val:'.535'},
+  {cat:'AVG', player:'G. Mitchell',     team:'Iowa',              val:'.521'},
+  {cat:'AVG', player:'T. Griffith',     team:'Saint Marys (CA)',  val:'.515'},
+  {cat:'AVG', player:'M. Quatrani',     team:'Notre Dame',        val:'.514'},
+  {cat:'AVG', player:'B. Wright',       team:'South Alabama',     val:'.511'},
+  // Home Runs (through Feb 19)
+  {cat:'HR',  player:'B. Johnston',     team:'Vanderbilt',        val:'5'},
+  {cat:'HR',  player:'J. Brown',        team:'LSU',               val:'4'},
+  {cat:'HR',  player:'J. Jones',        team:'Wichita St.',       val:'4'},
+  {cat:'HR',  player:'C. Lunsford',     team:'Louisiana Tech',    val:'4'},
+  {cat:'HR',  player:'M. Rhoades',      team:'Butler',            val:'4'},
+  // RBI (through Feb 19)
+  {cat:'RBI', player:'D. Bermudez',     team:'Jacksonville',      val:'16'},
+  {cat:'RBI', player:'T. Armstrong',    team:'Baylor',            val:'15'},
+  {cat:'RBI', player:'D. Kennedy',      team:'Kansas St.',        val:'15'},
+  {cat:'RBI', player:'S. Guerra',       team:'Tarleton St.',      val:'13'},
+  {cat:'RBI', player:'T. Bissetta',     team:'Ole Miss',          val:'12'},
+  // ERA (through Mar 5 — min IP qualified)
+  {cat:'ERA', player:'S. Benes',        team:'Lindenwood',        val:'0.00'},
+  {cat:'ERA', player:'C. Fisher',       team:'Arkansas',          val:'0.00'},
+  {cat:'ERA', player:'M. Edwards',      team:'Southern Cal',      val:'0.00'},
+  {cat:'ERA', player:'C. Allen',        team:'UNCW',              val:'0.47'},
+  {cat:'ERA', player:'D. Volantis',     team:'Texas',             val:'0.48'},
+  // Strikeouts (through Mar 5)
+  {cat:'K',   player:'D. Whitney',      team:'Oregon St.',        val:'34'},
+  {cat:'K',   player:'C. Levonas',      team:'Wake Forest',       val:'33'},
+  {cat:'K',   player:'C. Johnson',      team:'Oklahoma',          val:'32'},
+  {cat:'K',   player:'M. Edwards',      team:'Southern Cal',      val:'31'},
+  {cat:'K',   player:'M. Malki',        team:'Cal Baptist',       val:'31'},
+  // Saves (through Mar 9)
+  {cat:'SV',  player:'R. Kroepel',      team:'Utah Tech',         val:'6'},
+  {cat:'SV',  player:'A. Roblez',       team:'Oregon St.',        val:'5'},
+  {cat:'SV',  player:'A. Troy',         team:'Southern Cal',      val:'5'},
+  {cat:'SV',  player:'J. Mitchell',     team:'Binghamton',        val:'4'},
+  {cat:'SV',  player:'W. Cooper',       team:'Texas St.',         val:'4'}
+];
+
+// ── Seed data: top conference leaders (2026) ──────────────────────────────────
+var SEED_CONF = [
+  {conf:'SEC',      cat:'AVG', player:'T. Bissetta',    team:'Ole Miss',       val:'.480'},
+  {conf:'SEC',      cat:'HR',  player:'B. Brown',       team:'Tennessee',      val:'3'},
+  {conf:'SEC',      cat:'RBI', player:'T. Bissetta',    team:'Ole Miss',       val:'12'},
+  {conf:'SEC',      cat:'ERA', player:'C. Fisher',      team:'Arkansas',       val:'0.00'},
+  {conf:'SEC',      cat:'K',   player:'R. McPherson',   team:'Mississippi St.',val:'28'},
+  {conf:'ACC',      cat:'AVG', player:'M. Quatrani',    team:'Notre Dame',     val:'.514'},
+  {conf:'ACC',      cat:'HR',  player:'J. Freeman',     team:'Northwestern',   val:'3'},
+  {conf:'ACC',      cat:'RBI', player:'A. Hernandez',   team:'Georgia Tech',   val:'11'},
+  {conf:'ACC',      cat:'ERA', player:'W. Mendes',      team:'Florida St.',    val:'0.55'},
+  {conf:'ACC',      cat:'K',   player:'C. Levonas',     team:'Wake Forest',    val:'33'},
+  {conf:'Big 12',   cat:'AVG', player:'T. Macon',       team:'Missouri',       val:'.500'},
+  {conf:'Big 12',   cat:'HR',  player:'J. Bennett',     team:'DBU',            val:'4'},
+  {conf:'Big 12',   cat:'RBI', player:'T. Armstrong',   team:'Baylor',         val:'15'},
+  {conf:'Big 12',   cat:'ERA', player:'D. Volantis',    team:'Texas',          val:'0.48'},
+  {conf:'Big 12',   cat:'K',   player:'C. Johnson',     team:'Oklahoma',       val:'32'},
+  {conf:'SWAC',     cat:'AVG', player:'T. Jones',       team:'Grambling',      val:'.438'},
+  {conf:'SWAC',     cat:'HR',  player:'J. Williams',    team:'Texas Southern', val:'2'},
+  {conf:'SWAC',     cat:'RBI', player:'T. Jones',       team:'Grambling',      val:'9'},
+  {conf:'SWAC',     cat:'ERA', player:'K. Robinson',    team:'Northwestern St.',val:'0.57'},
+  {conf:'SWAC',     cat:'K',   player:'C. Olivier',     team:'Lamar',          val:'28'},
+  {conf:'MEAC',     cat:'AVG', player:'D. Alston',      team:'Morgan St.',     val:'.421'},
+  {conf:'MEAC',     cat:'HR',  player:'J. Parker',      team:'Norfolk St.',    val:'2'},
+  {conf:'MEAC',     cat:'RBI', player:'D. Alston',      team:'Morgan St.',     val:'8'},
+  {conf:'MEAC',     cat:'ERA', player:'T. Miles',       team:'Howard',         val:'1.80'},
+  {conf:'MEAC',     cat:'K',   player:'A. Brooks',      team:'Coppin St.',     val:'18'},
+  {conf:'SEC',      cat:'SV',  player:'A. Valentin',    team:'South Carolina', val:'4'},
+  {conf:'ACC',      cat:'SV',  player:'L. Jackman',     team:'Georgetown',     val:'4'},
+  {conf:'Big 12',   cat:'SV',  player:'I. Lohse',       team:'Missouri',       val:'4'},
+  {conf:'SWAC',     cat:'SV',  player:'C. Williams',    team:'Florida A&M',    val:'4'},
+  {conf:'MEAC',     cat:'SV',  player:'D. Parker',      team:'Morgan St.',     val:'2'}
+];
+
+function seedStats() {
+  overallItems = SEED_OVERALL.map(function(d) {
+    return { scope:'overall', conf:'', cat:d.cat, player:d.player, team:d.team, val:d.val };
+  });
+  confItems = SEED_CONF.map(function(d) {
+    return { scope:'conf', conf:d.conf, cat:d.cat, player:d.player, team:d.team, val:d.val };
+  });
+  statsBuilt = true;
+  renderStatsTicker();
+  if (slOpen) renderSlGrid();
+}
+
+function fetchAllStats() {
+  // Show seed data immediately — live fetch overrides if successful
+  seedStats();
+
+  var PROXY = 'https://corsproxy.io/?url=';
+  var STAT_PAGES = [
+    { url:'https://d1sportsnet.com/baseball/stats/avg.php',     cat:'AVG', col:8 },
+    { url:'https://d1sportsnet.com/baseball/stats/hrs.php',     cat:'HR',  col:6 },
+    { url:'https://d1sportsnet.com/baseball/stats/rbi.php',     cat:'RBI', col:6 },
+    { url:'https://d1sportsnet.com/baseball/stats/era.php',     cat:'ERA', col:8 },
+    { url:'https://d1sportsnet.com/baseball/stats/strikes.php', cat:'K',   col:7 },
+    { url:'https://d1sportsnet.com/baseball/stats/saves.php',   cat:'SV',  col:7 }
+  ];
+
+  function abbrevName(full) {
+    if (!full) return full;
+    var parts = full.trim().split(/\s+/);
+    if (parts.length < 2) return full;
+    return parts[0].charAt(0) + '. ' + parts.slice(1).join(' ');
+  }
+
+  // Each category updates independently — a failed fetch keeps the seed rows for that cat
+  STAT_PAGES.forEach(function(sp) {
+    fetch(PROXY + encodeURIComponent(sp.url), { cache:'no-store' })
+      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function(html) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var rows = doc.querySelectorAll('table tr');
+        var fresh = [];
+        for (var i = 0; i < rows.length && fresh.length < 5; i++) {
+          var cells = rows[i].querySelectorAll('td');
+          if (cells.length < sp.col + 1) continue;
+          var name = cells[1] ? cells[1].textContent.trim() : '';
+          var team = cells[2] ? cells[2].textContent.trim() : '';
+          var val  = cells[sp.col] ? cells[sp.col].textContent.trim() : '';
+          if (!name || name === 'Name' || !/[A-Za-z]{2}/.test(name)) continue;
+          if (!val || val === sp.cat) continue;
+          fresh.push({ scope:'overall', conf:'', cat:sp.cat,
+            player:abbrevName(name), team:team, val:val });
+        }
+        if (fresh.length >= 3) {
+          // Replace just this category's rows in overallItems, preserve all others
+          overallItems = overallItems.filter(function(d) { return d.cat !== sp.cat; })
+            .concat(fresh);
+          console.log('Stats: live ' + sp.cat + ' loaded (' + fresh.length + ' entries)');
+          if (statsScope === 'overall') renderStatsTicker();
+          if (slOpen) renderSlGrid();
+        } else {
+          console.warn('Stats: ' + sp.cat + ' live returned only ' + fresh.length + ' — keeping seed');
+        }
+      })
+      .catch(function(e) { console.warn('Stats live fetch failed (' + sp.cat + '):', e); });
+  });
+
+}
+
+function renderStatsTicker() {
+  var inner   = document.getElementById('statsTickerInner');
+  var loading = document.getElementById('statsLoading');
+  var raw     = statsScope === 'overall' ? overallItems : confItems;
+
+  if (!raw || !raw.length) {
+    loading.textContent    = 'STATS UNAVAILABLE';
+    loading.style.display  = 'block';
+    inner.style.display    = 'none';
+    return;
+  }
+
+  // Sort by canonical category order so ticker always reads AVG→HR→RBI→ERA→K→SV
+  var CAT_ORD = ['AVG','HR','RBI','ERA','K','SV','H','SB','OBP','SLG','W'];
+  var items = raw.slice().sort(function(a,b) {
+    var ai = CAT_ORD.indexOf(a.cat); var bi = CAT_ORD.indexOf(b.cat);
+    if (ai !== bi) return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi);
+    // Within same cat, sort conf items by conf name
+    if (a.conf < b.conf) return -1;
+    if (a.conf > b.conf) return 1;
+    return 0;
+  });
+
+  var doubled = items.concat(items);
+  var html = '';
+  for (var i = 0; i < doubled.length; i++) {
+    var it = doubled[i];
+    html += '<span class="stat-item">' +
+      '<span class="stat-cat">'    + it.cat    + '</span>' +
+      (it.conf ? '<span class="stat-conf">' + it.conf + '</span>' : '') +
+      '<span class="stat-player">' + it.player + '</span>' +
+      (it.team ? '<span class="stat-team">(' + it.team + ')</span>' : '') +
+      '<span class="stat-val">'    + it.val    + '</span>' +
+    '</span>';
+    if ((i + 1) % 5 === 0) html += '<span class="stats-divider">&#9670;</span>';
+  }
+
+  inner.innerHTML = html;
+  loading.style.display         = 'none';
+  inner.style.display           = 'flex';
+  inner.style.animationDuration = Math.max(40, items.length * 3) + 's';
+}
+
+// Stats tab controls
+var stabs = document.querySelectorAll('.stab');
+for (var sti = 0; sti < stabs.length; sti++) {
+  (function(tab) {
+    tab.addEventListener('click', function() {
+      for (var xi = 0; xi < stabs.length; xi++) stabs[xi].classList.remove('active');
+      tab.classList.add('active');
+      statsScope = tab.getAttribute('data-scope');
+      if (statsBuilt) renderStatsTicker();
+    });
+  })(stabs[sti]);
+}
+
+// ── Game Summary Modal (no external API — uses already-loaded scoreboard data) ─
+document.getElementById('main').addEventListener('click', function(e) {
+  var btn = e.target.closest('.bs-btn');
+  if (!btn) return;
+  var gameId = btn.getAttribute('data-gameid');
+  if (gameId) openBoxScore(gameId);
+});
+
+function openBoxScore(gameId) {
+  var overlay = document.getElementById('bsOverlay');
+  var title   = document.getElementById('bsTitle');
+  var sub     = document.getElementById('bsSubtitle');
+  var body    = document.getElementById('bsBody');
+
+  // Find local game data for header / linescore fallback
+  var game = null;
+  for (var gi = 0; gi < allGames.length; gi++) {
+    if (allGames[gi].id === gameId) { game = allGames[gi]; break; }
+  }
+
+  title.textContent = game ? (game.away.name + ' @ ' + game.home.name) : 'BOX SCORE';
+  sub.textContent   = game ? (game.gs === 'final' ? 'FINAL' : game.gs === 'live' ? 'LIVE \u2014 INN ' + (game.period||'') : game.time) : '';
+  body.innerHTML    = '<div class="bs-loading">LOADING&hellip;</div>';
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Correct endpoint: site.web.api.espn.com (not site.api.espn.com) returns full boxscore
+  var primaryUrl = 'https://site.web.api.espn.com/apis/site/v2/sports/baseball/college-baseball/summary?event=' + gameId;
+  var proxyUrl   = 'https://corsproxy.io/?url=' + encodeURIComponent(primaryUrl);
+
+  function tryFetch(url, fallbackUrl) {
+    fetch(url)
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(data) {
+        renderBoxScore(data, game, gameId, body, sub, title);
+      })
+      .catch(function(err) {
+        console.warn('Box score fetch failed (' + url + '):', err);
+        if (fallbackUrl) {
+          tryFetch(fallbackUrl, null);
+        } else {
+          renderLocalSummary(game, gameId, body);
+        }
+      });
+  }
+
+  tryFetch(primaryUrl, proxyUrl);
+}
+
+// ── Render whatever ESPN actually returns ─────────────────────────────────────
+function renderBoxScore(data, game, gameId, body, sub, title) {
+  try {
+    var html = '';
+
+    // ── Pull teams from header ────────────────────────────────────────────────
+    var hdr   = data.header || {};
+    var comp  = (hdr.competitions || [])[0] || {};
+    var tms   = comp.competitors || [];
+    var away  = tms[0] || {}; var home = tms[1] || {};
+    for (var ti = 0; ti < tms.length; ti++) {
+      if (tms[ti].homeAway === 'away') away = tms[ti];
+      if (tms[ti].homeAway === 'home') home = tms[ti];
+    }
+    var aTeam  = away.team  || {};
+    var hTeam  = home.team  || {};
+    var aName  = aTeam.shortDisplayName || aTeam.displayName || (game ? game.away.name : 'Away');
+    var hName  = hTeam.shortDisplayName || hTeam.displayName || (game ? game.home.name : 'Home');
+    var aAbbr  = aTeam.abbreviation || (game ? game.away.abbr : 'AWY');
+    var hAbbr  = hTeam.abbreviation || (game ? game.home.abbr : 'HME');
+    var aScore = parseInt(away.score) || (game ? game.away.score : 0);
+    var hScore = parseInt(home.score) || (game ? game.home.score : 0);
+    var aWin   = aScore > hScore; var hWin = hScore > aScore;
+    var aRec   = ((away.records || [])[0] || {}).summary || (game ? game.away.rec : '');
+    var hRec   = ((home.records || [])[0] || {}).summary || (game ? game.home.rec : '');
+    var stDesc = ((comp.status || {}).type || {}).description || '';
+    if (stDesc) sub.textContent = stDesc.toUpperCase();
+    title.textContent = aName + ' @ ' + hName;
+
+    // ── Score header ─────────────────────────────────────────────────────────
+    html += '<div class="bs-score-row">' +
+      '<div class="bs-team"><div class="bs-tname">' + aName + '</div>' +
+        (aRec ? '<div class="bs-trec">' + aRec + '</div>' : '') + '</div>' +
+      '<div class="bs-score ' + (aWin?'bs-win':'bs-lose') + '">' + aScore + '</div>' +
+      '<div class="bs-vs">@</div>' +
+      '<div class="bs-score ' + (hWin?'bs-win':'bs-lose') + '">' + hScore + '</div>' +
+      '<div class="bs-team" style="text-align:right"><div class="bs-tname">' + hName + '</div>' +
+        (hRec ? '<div class="bs-trec">' + hRec + '</div>' : '') + '</div>' +
+    '</div>';
+
+    // ── Linescore (from header competitors) ──────────────────────────────────
+    var aLS = away.linescores || (game ? game.away.ls : []) || [];
+    var hLS = home.linescores || (game ? game.home.ls : []) || [];
+    if (aLS.length) {
+      html += '<div class="bs-section"><div class="bs-section-title">LINESCORE</div>';
+      html += '<div style="overflow-x:auto"><table class="bs-linescore"><thead><tr><th></th>';
+      for (var li = 0; li < aLS.length; li++) html += '<th>' + (li + 1) + '</th>';
+      html += '<th class="bs-tot">R</th></tr></thead><tbody>';
+      html += '<tr><td class="bs-lbl">' + aAbbr + '</td>';
+      for (var li2 = 0; li2 < aLS.length; li2++) {
+        var av = aLS[li2].value !== undefined ? aLS[li2].value : (aLS[li2].a !== undefined ? aLS[li2].a : '-');
+        html += '<td>' + (av === null ? '-' : av) + '</td>';
+      }
+      html += '<td class="bs-tot">' + aScore + '</td></tr>';
+      html += '<tr><td class="bs-lbl">' + hAbbr + '</td>';
+      for (var li3 = 0; li3 < aLS.length; li3++) {
+        var hv = hLS[li3] ? (hLS[li3].value !== undefined ? hLS[li3].value : (hLS[li3].h !== undefined ? hLS[li3].h : '-')) : '-';
+        html += '<td>' + (hv === null ? '-' : hv) + '</td>';
+      }
+      html += '<td class="bs-tot">' + hScore + '</td></tr>';
+      html += '</tbody></table></div></div>';
+    }
+
+    // ── Player stats ─────────────────────────────────────────────────────────
+    // ESPN college-baseball summary returns data.boxscore.players[] or .teams[]
+    // Each entry: { team:{}, statistics:[{ name, labels:[], athletes:[{athlete,stats:[]}], totals:[] }] }
+    var bx      = data.boxscore || {};
+    // Try all known key names ESPN uses
+    var entries = bx.players || bx.teams || [];
+    var statHtml = '';
+
+    // Helper: render one stat group table
+    function renderStatGroup(ename, sTitle, labels, athletes, totals) {
+      var out = '<div class="bs-section"><div class="bs-section-title">' +
+        ename.toUpperCase() + ' \u2014 ' + sTitle + '</div>';
+      out += '<div style="overflow-x:auto"><table class="bs-table"><thead><tr>' +
+        '<th style="min-width:100px">PLAYER</th>';
+      for (var l = 0; l < labels.length; l++) out += '<th class="r">' + labels[l] + '</th>';
+      out += '</tr></thead><tbody>';
+
+      for (var ai = 0; ai < athletes.length; ai++) {
+        var ae  = athletes[ai];
+        var ath = ae.athlete || {};
+        var pn  = ath.shortName || ath.displayName || '\u2014';
+        var pos = (ath.position || {}).abbreviation || '';
+        var st  = ae.stats || [];
+        var dnp = ae.didNotPlay || false;
+        // Decision badge: ESPN may use ae.pitcher (string) or ae.reason
+        var dec = (typeof ae.pitcher === 'string' ? ae.pitcher : '') || ae.decision || ae.reason || '';
+        // Normalise "win"/"loss"/"save" words ESPN sometimes returns
+        if (/^win/i.test(dec))  dec = 'W';
+        if (/^loss/i.test(dec) || /^los/i.test(dec)) dec = 'L';
+        if (/^save/i.test(dec) || /^sv/i.test(dec))  dec = 'SV';
+        var decCls = dec === 'W' ? 'bs-pitrow-w' : dec === 'L' ? 'bs-pitrow-l' : (dec === 'S' || dec === 'SV') ? 'bs-pitrow-s' : '';
+
+        out += '<tr><td class="bs-name"><span class="' + decCls + '">' + pn + '</span>';
+        if (pos) out += '<span class="bs-pos">' + pos + '</span>';
+        if (dec) out += '<span class="bs-pos ' + decCls + '"> ' + dec + '</span>';
+        out += '</td>';
+
+        if (dnp) {
+          out += '<td colspan="' + labels.length + '" class="r" style="color:var(--muted)">DNP</td>';
+        } else {
+          for (var s = 0; s < labels.length; s++) {
+            var v = st[s];
+            out += '<td class="r">' + (v !== undefined && v !== null && v !== '' ? v : '\u2014') + '</td>';
+          }
+        }
+        out += '</tr>';
+      }
+
+      if (totals && totals.length) {
+        out += '<tr class="total-row"><td>TOTALS</td>';
+        for (var t = 0; t < labels.length; t++) out += '<td class="r">' + (totals[t] !== undefined && totals[t] !== null ? totals[t] : '\u2014') + '</td>';
+        out += '</tr>';
+      }
+      out += '</tbody></table></div></div>';
+      return out;
+    }
+
+    for (var ei = 0; ei < entries.length; ei++) {
+      var entry   = entries[ei];
+      var eteam   = entry.team || {};
+      var ename   = eteam.shortDisplayName || eteam.displayName || ('Team ' + (ei + 1));
+      var statArr = entry.statistics || [];
+
+      for (var si = 0; si < statArr.length; si++) {
+        var sg       = statArr[si];
+        var sgName   = (sg.name || sg.type || '').toLowerCase();
+        var labels   = sg.labels || sg.keys || sg.columns || [];
+        var athletes = sg.athletes || [];
+        var totals   = sg.totals || [];
+        if (!athletes.length) continue;
+
+        // Determine batting vs pitching
+        var isPitch = sgName.indexOf('pitch') >= 0 || sgName === 'pitching' ||
+                      (labels.length > 0 && (labels[0] === 'IP' || labels[0] === 'H' && labels[1] === 'R'));
+        var sTitle = isPitch ? 'PITCHING' : 'BATTING';
+        statHtml += renderStatGroup(ename, sTitle, labels, athletes, totals);
+      }
+    }
+
+    // ── W/L pitchers from leaders if no full player stats rendered ────────────
+    if (!statHtml) {
+      var wn = '', ln = '', sv = '';
+      // Try data.leaders
+      var ldrs = data.leaders || [];
+      for (var ldi = 0; ldi < ldrs.length; ldi++) {
+        var ldr  = ldrs[ldi];
+        var ldrA = (ldr.leaders || [])[0] || {};
+        var ldrN = (ldrA.athlete || {}).shortName || (ldrA.athlete || {}).displayName || '';
+        var ldrAbb = (ldr.abbreviation || ldr.name || '').toUpperCase();
+        if (ldrAbb === 'W')             wn = ldrN;
+        if (ldrAbb === 'L')             ln = ldrN;
+        if (ldrAbb === 'SV' || ldrAbb === 'S') sv = ldrN;
+      }
+      // Try local scoreboard data
+      if (!wn && game && game.pitchers && game.pitchers.winner && game.pitchers.winner.athlete) wn = game.pitchers.winner.athlete.shortName || '';
+      if (!ln && game && game.pitchers && game.pitchers.loser  && game.pitchers.loser.athlete)  ln = game.pitchers.loser.athlete.shortName  || '';
+
+      if (wn || ln || sv) {
+        statHtml += '<div class="bs-section"><div class="bs-section-title">PITCHING DECISION</div>';
+        statHtml += '<div style="font-size:11px;line-height:2.4;padding:4px 0">';
+        if (wn) statHtml += '<div><span class="bs-pitrow-w" style="font-weight:700;margin-right:8px">W</span>' + wn + '</div>';
+        if (ln) statHtml += '<div><span class="bs-pitrow-l" style="font-weight:700;margin-right:8px">L</span>' + ln + '</div>';
+        if (sv) statHtml += '<div><span class="bs-pitrow-s" style="font-weight:700;margin-right:8px">SV</span>' + sv + '</div>';
+        statHtml += '</div></div>';
+      } else {
+        // No player data at all — tell the user gracefully
+        statHtml += '<div class="bs-section" style="color:var(--muted);font-size:10px;letter-spacing:1px;text-align:center;padding:12px 0">' +
+          'Individual stats not yet available for this game.</div>';
+      }
+    }
+
+    html += statHtml;
+
+    // ── ESPN links ─────────────────────────────────────────────────────────────
+    var espnBase = 'https://www.espn.com/college-baseball/';
+    var isFin  = game && game.gs === 'final';
+    var isLive = game && game.gs === 'live';
+    var isSched= game && game.gs === 'scheduled';
+    html += '<div style="display:flex;gap:12px;justify-content:center;padding:16px 0 4px;flex-wrap:wrap">';
+    if (isLive) html += '<a href="' + espnBase + 'game/_/gameId/' + gameId + '" target="_blank" rel="noopener" style="color:var(--live);font-size:10px;letter-spacing:2px;border:1px solid var(--live);padding:5px 12px;border-radius:2px">&#9654; GAMECAST</a>';
+    if (!isSched) html += '<a href="' + espnBase + 'boxscore/_/gameId/' + gameId + '" target="_blank" rel="noopener" style="color:var(--accent);font-size:10px;letter-spacing:2px;border:1px solid var(--accent);padding:5px 12px;border-radius:2px">&#9776; ESPN BOX SCORE</a>';
+    html += '</div>';
+
+    body.innerHTML = html;
+
+  } catch(e) {
+    console.error('renderBoxScore:', e);
+    renderLocalSummary(game, gameId, body);
+  }
+}
+
+// ── Fallback: render linescore + W/L from local scoreboard data ───────────────
+function renderLocalSummary(game, gameId, body) {
+  if (!game) { body.innerHTML = '<div class="bs-error">&#9918; NO DATA AVAILABLE</div>'; return; }
+  var aWin = game.away.score > game.home.score;
+  var hWin = game.home.score > game.away.score;
+  var html = '<div class="bs-score-row">' +
+    '<div class="bs-team"><div class="bs-tname">' + game.away.name + '</div>' +
+      (game.away.rec ? '<div class="bs-trec">' + game.away.rec + '</div>' : '') + '</div>' +
+    '<div class="bs-score ' + (aWin?'bs-win':'bs-lose') + '">' + game.away.score + '</div>' +
+    '<div class="bs-vs">@</div>' +
+    '<div class="bs-score ' + (hWin?'bs-win':'bs-lose') + '">' + game.home.score + '</div>' +
+    '<div class="bs-team" style="text-align:right"><div class="bs-tname">' + game.home.name + '</div>' +
+      (game.home.rec ? '<div class="bs-trec">' + game.home.rec + '</div>' : '') + '</div>' +
+  '</div>';
+  if (game.ls && game.ls.length) {
+    html += '<div class="bs-section"><div class="bs-section-title">LINESCORE</div>';
+    html += '<div style="overflow-x:auto"><table class="bs-linescore"><thead><tr><th></th>';
+    for (var i = 0; i < game.ls.length; i++) html += '<th>' + game.ls[i].inn + '</th>';
+    html += '<th class="bs-tot">R</th></tr></thead><tbody>';
+    html += '<tr><td class="bs-lbl">' + game.away.abbr + '</td>';
+    for (var i2 = 0; i2 < game.ls.length; i2++) { var av = game.ls[i2].a; html += '<td>' + (av !== null && av !== undefined ? av : '-') + '</td>'; }
+    html += '<td class="bs-tot">' + game.away.score + '</td></tr>';
+    html += '<tr><td class="bs-lbl">' + game.home.abbr + '</td>';
+    for (var i3 = 0; i3 < game.ls.length; i3++) { var hv = game.ls[i3].h; html += '<td>' + (hv !== null && hv !== undefined ? hv : '-') + '</td>'; }
+    html += '<td class="bs-tot">' + game.home.score + '</td></tr>';
+    html += '</tbody></table></div></div>';
+  }
+  var wp = game.pitchers.winner; var lp = game.pitchers.loser;
+  if (wp || lp) {
+    html += '<div class="bs-section"><div class="bs-section-title">PITCHING DECISION</div><div style="font-size:11px;line-height:2.4;padding:4px 0">';
+    if (wp && wp.athlete) html += '<div><span class="bs-pitrow-w" style="font-weight:700;margin-right:8px">W</span>' + (wp.athlete.shortName||'') + '</div>';
+    if (lp && lp.athlete) html += '<div><span class="bs-pitrow-l" style="font-weight:700;margin-right:8px">L</span>' + (lp.athlete.shortName||'') + '</div>';
+    html += '</div></div>';
+  }
+  html += '<div style="text-align:center;padding:12px 0 4px"><a href="https://www.espn.com/college-baseball/boxscore/_/gameId/' + gameId + '" target="_blank" style="color:var(--accent);font-size:10px;letter-spacing:2px">FULL BOX SCORE ON ESPN &#8599;</a></div>';
+  body.innerHTML = html;
+}
+
+// Modal close handlers
+document.getElementById('bsClose').addEventListener('click', function() {
+  document.getElementById('bsOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+});
+document.getElementById('bsOverlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    this.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('bsOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+selDate = fmtDate(new Date());
+buildDateStrip();
+fetchScores();
+fetchAllStats();
+setInterval(fetchScores, 15000);       // full scoreboard refresh every 15s
+setInterval(fetchAllStats, 300000);    // stats ticker every 5 min
+
+</script>
+
+
 </body>
 </html>
